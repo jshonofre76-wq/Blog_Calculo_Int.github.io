@@ -1,0 +1,345 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <!-- Copia esto directo dentro del body de tu archivo tema3.html -->
+    <main>
+        <div class="navegacion-superior">
+            <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
+        </div>
+
+        <h1>Tema: Volumen de Sólidos de Revolución</h1>
+
+        <!-- FILA SUPERIOR: Teoría y Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    Permite calcular el volumen de un objeto tridimensional que se genera al hacer girar una región del plano bidimensional (delimitada por funciones) alrededor de un eje de rotación (ya sea el eje X, el eje Y o rectas paralelas).
+                </p>
+                <p>Es indispensable en ingeniería para diseñar piezas mecánicas en tornos, envases industriales y tolvas de almacenamiento.</p>
+            </div>
+        
+            <div class="bloque" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="video-pequeno" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial Volumen"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- SELECTOR DE SUBTEMAS -->
+        <div style="margin-bottom: 20px; text-align: center;">
+            <p style="font-weight: bold; margin-bottom: 8px;">Selecciona el tipo de rotación a estudiar:</p>
+            <button class="btn-paso" style="background-color: #e67e22;" onclick="cambiarSubtema('ejeX')">Subtema 1: Giro en Eje X</button>
+            <button class="btn-paso" style="background-color: #27ae60;" onclick="cambiarSubtema('ejeY')">Subtema 2: Giro en Eje Y</button>
+            <button class="btn-paso" style="background-color: #8e44ad;" onclick="cambiarSubtema('dosFunciones')">Subtema 3: Dos Funciones</button>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicios y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra Dinámica de Ejercicios -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2 id="titulo-subtema">Subtema 1: Giro en el Eje X (Método de Discos)</h2>
+                <p id="enunciado-ejercicio"><strong>Problema:</strong> Hallar el volumen generado al rotar la función y = x² en el intervalo [0, 3] alrededor del eje X.</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" onclick="gestionarPasos(1)">Paso 1: Plantear Integral</button>
+                    <button class="btn-paso" onclick="gestionarPasos(2)">Paso 2: Desarrollar Exponente</button>
+                    <button class="btn-paso" onclick="gestionarPasos(3)">Paso 3: Integrar y Evaluar</button>
+                </div>
+
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 250px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #e67e22; line-height: 1.6;">
+                    <div id="v-indicador">Haz clic en los pasos de arriba para iniciar la resolución.</div>
+                
+                    <div id="v-paso1" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="v-paso2" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="v-paso3" style="display: none; margin-bottom: 15px;"></div>
+                
+                    <!-- Contenedor de la Imagen Oculta (Aparece solo en el último paso) -->
+                    <div id="grafico-contenedor" style="display: none; margin-top: 20px; text-align: center; background: #34495e; padding: 10px; border-radius: 5px;">
+                        <p style="margin: 0 0 10px 0; font-size: 13px; color: #f39c12;">📊 Representación Gráfica del Sólido:</p>
+                        <!-- Solo debes cambiar 'grafica1.png' por el nombre real de tu captura de GeoGebra -->
+                        <img id="grafica-imagen" src="grafica1.png" alt="Gráfica matemática del volumen" style="max-width: 100%; height: auto; border: 1px solid #555; border-radius: 4px;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Preguntas de Aplicación -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>Preguntas de Aplicación</h2>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarVolumenRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarVolumenRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarVolumenRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div style="background: #edf7fd; border-left: 4px solid #3498db; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <div id="v-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- --- LOGICA DE JAVASCRIPT DINAMICA --- -->
+    <script>
+        // Guardamos los datos de los 3 ejercicios en memoria para cambiarlos al instante
+        let subtemaActual = 'ejeX';
+    
+        const datosEjercicios = {
+            ejeX: {
+                titulo: "Subtema 1: Giro en el Eje X (Método de Discos)",
+                enunciado: "<strong>Problema de la Asignatura:</strong> Hallar el volumen generado al rotar f(x) = x² en el intervalo [0, 3] sobre el eje X.",
+                paso1: "<strong>[PASO 1] Planteamiento del Volumen:</strong><br>V = π ₀∫³ [f(x)]² dx<br>V = π ₀∫³ [x²]² dx",
+                paso2: "<strong>[PASO 2] Desarrollar la potencia algebraica:</strong><br>[x²]² = x⁴<br>V = π ₀∫³ x⁴ dx",
+                paso3: "<strong>[PASO 3] Integrar y Evaluar en Límites:</strong><br>∫ x⁴ dx = x⁵ / 5<br>Evaluamos de 0 a 3: [ (3⁵/5) - (0⁵/5) ] = 243/5<br><br><strong>Resultado Final:</strong> V = 48.6π unidades cúbicas (u³)",
+                imagen: "grafica_ejex.png" // Pon aquí el nombre de tu captura de GeoGebra de Eje X
+            },
+            ejeY: {
+                titulo: "Subtema 2: Giro en el Eje Y (Inversión de variables)",
+                enunciado: "<strong>Problema:</strong> Hallar el volumen de y = x² rotando en el eje Y. Evaluado en las ordenadas de [0, 9].",
+                paso1: "<strong>[PASO 1] Despejar la variable en función de Y:</strong><br>Si y = x²  →  x = √y<br>Fórmula: V = π ₀∫⁹ [g(y)]² dy",
+                paso2: "<strong>[PASO 2] Configurar y simplificar la Integral:</strong><br>V = π ₀∫⁹ [√y]² dy<br>Al elevar la raíz al cuadrado se cancelan: V = π ₀∫⁹ y dy",
+                paso3: "<strong>[PASO 3] Integración y Teorema Fundamental:</strong><br>∫ y dy = y² / 2<br>Evaluando: [ (9²/2) - (0²/2) ] = 81 / 2<br><br><strong>Resultado Final:</strong> V = 40.5π unidades cúbicas (u³)",
+                imagen: "grafica_ejey.png" // Captura GeoGebra para Eje Y
+            },
+            dosFunciones: {
+                titulo: "Subtema 3: Región entre dos Funciones (Método de Arandelas)",
+                enunciado: "<strong>Problema:</strong> Hallar el volumen de la región entre f(x) = x y g(x) = x² rotando en el eje X de [0, 1].",
+                paso1: "<strong>[PASO 1] Plantear la resta de radios (Externo - Interno):</strong><br>Fórmula: V = π ₀∫¹ [ (Radio Externo)² - (Radio Interno)² ] dx<br>V = π ₀∫¹ [ (x)² - (x²)² ] dx",
+                paso2: "<strong>[PASO 2] Simplificación del integrando:</strong><br>V = π ₀∫¹ (x² - x⁴) dx",
+                paso3: "<strong>[PASO 3] Integración analítica por separado:</strong><br>∫ (x² - x⁴) dx = (x³/3) - (x⁵/5)<br>Evaluando de 0 a 1: [ (1/3 - 1/5) - (0) ] = 2/15<br><br><strong>Resultado Final:</strong> V = (2/15)π ≈ 0.133π unidades cúbicas (u³)",
+                imagen: "grafica_arandelas.png" // Captura GeoGebra para Arandelas
+            }
+        };
+
+        // Al pulsar las pestañas naranjas, verdes o moradas cambia el contenido matemático
+        function cambiarSubtema(idSubtema) {
+            subtemaActual = idSubtema;
+            document.getElementById('titulo-subtema').innerHTML = datosEjercicios[idSubtema].titulo;
+            document.getElementById('enunciado-ejercicio').innerHTML = datosEjercicios[idSubtema].enunciado;
+        
+            // Resetear la pizarra
+            document.getElementById('v-indicador').style.display = 'block';
+            document.getElementById('v-paso1').style.display = 'none';
+            document.getElementById('v-paso2').style.display = 'none';
+            document.getElementById('v-paso3').style.display = 'none';
+            document.getElementById('grafico-contenedor').style.display = 'none';
+        }
+
+        // Gestiona la aparición acumulativa de los pasos y enciende la gráfica en el último paso
+        function gestionarPasos(numeroPaso) {
+            document.getElementById('v-indicador').style.display = 'none';
+            const contenedorPaso = document.getElementById('v-paso' + numeroPaso);
+            contenedorPaso.innerHTML = datosEjercicios[subtemaActual]['paso' + numeroPaso];
+            contenedorPaso.style.display = 'block';
+            // Si es el paso 3 (último paso), revelamos el gráfico
+            if (numeroPaso === 3) {document.getElementById('grafica-imagen').src = datosEjercicios[subtemaActual].imagen;
+                document.getElementById('grafico-contenedor').style.display = 'block';
+            }
+        }
+
+        // Respuestas dinámicas del panel derecho
+        function mostrarVolumenRespuesta(id) {
+            const txt = document.getElementById('v-texto-respuesta');
+            if (id === 1) {
+                txt.innerHTML = "Proyectos Industriales y de Tornería: Es clave en la manufactura computarizada (tornillos, pistones, botellas plásticas) para calcular el volumen exacto de materia prima requerida antes del vaciado fundido.";
+            } else if (id === 2) {
+                txt.innerHTML = "Aplicación en la vida real: Se utiliza en obras civiles para estimar la capacidad cúbica de tanques de agua con perfiles parabólicos u ovoides, asegurando su resistencia estructural.";
+            } else if (id === 3) {
+                txt.innerHTML = "Herramientas tecnológicas: Se emplea el comando 'VolumeOfRevolution' en GeoGebra 3D, el software de modelado SolidWorks, o scripts avanzados de Python (Matplotlib) para renderizar el sólido en tres dimensiones.";
+            }
+        }
+    </script>
+
+</body>
+</html>
+
+
+
