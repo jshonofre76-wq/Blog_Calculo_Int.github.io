@@ -232,6 +232,7 @@
                     <button class="btn-paso" onclick="mostrarPaso(5)">Paso 5</button>
                     <button class="btn-paso" onclick="mostrarPaso(6)">Paso 6</button>
                     <button class="btn-paso" onclick="mostrarPaso(7)">Paso 7</button>
+                    <button class="btn-paso" onclick="mostrarPaso(8)">Paso 8</button>
                 </div>
 
                 <div class="pizarra-ejercicio">
@@ -263,29 +264,30 @@
                     </div>
                     
                     <div id="paso5" class="paso-oculto">
-                        <strong>[PASO 5] Formar e igualar coeficientes:</strong><br>
-                        Armamos el sistema de ecuaciones comparando términos semejantes:<br>
-                        1) A + B = 3<br>
-                        2) -2A + 2B + C = -8<br>
-                        3) A - 3B + 3C = 13<br>
-                        <br>
-                        Resolviendo el sistema obtenemos: <strong>A = 4, B = -1, C = -2</strong>
+                        <strong>[PASO 5] Formar el Sistema de Ecuaciones:</strong><br>
+                        Igualando los coeficientes de ambos lados obtenemos tres ecuaciones (filas):<br>
+                        F1) A + B = 3<br>
+                        F2) -2A + 2B + C = -8<br>
+                        F3) A - 3B + 3C = 13
                     </div>
                     
                     <div id="paso6" class="paso-oculto">
-                        <strong>[PASO 6] Sustituir los valores hallados:</strong><br>
-                        Nuestra integral original se transforma en:<br>
-                        ∫ [ 4/(x+3) - 1/(x-1) - 2/(x-1)² ] dx
+                        <strong>[PASO 6] Resolución del Sistema (Operaciones de Filas):</strong><br>
+                        • Para eliminar variables, combinamos las filas de la siguiente manera:<br>
+                        &nbsp;&nbsp;F4 = F2 + F3 * 2  → Genera la 4ta ecuación sin la variable C.<br>
+                        &nbsp;&nbsp;F5 = F1 + F3 * (-1) → Genera la 5ta ecuación combinada.<br>
+                        • Sumando F4 + F5 eliminamos las incógnitas restantes y despejamos: <strong>C = -2</strong><br>
+                        • Sustituimos C en los pasos anteriores para hallar: <strong>A = 4</strong> y luego <strong>B = -1</strong>
                     </div>
-
-                    <div id="paso6" class="paso-oculto">
-                        <strong>[PASO 6] Sustituir los valores hallados:</strong><br>
-                        Nuestra integral original se transforma en:<br>
-                        ∫ [ 4/(x+3) - 1/(x-1) - 2/(x-1)² ] dx
-                    </div>
-
+                    
                     <div id="paso7" class="paso-oculto">
-                        <strong>[PASO 7] Integración directa y término cuadrático:</strong><br>
+                        <strong>[PASO 7] Sustituir los valores hallados:</strong><br>
+                        Reescribimos nuestra integral original con las constantes numéricas:<br>
+                        ∫ [ 4/(x+3) - 1/(x-1) - 2/(x-1)² ] dx
+                    </div>
+                    
+                    <div id="paso8" class="paso-oculto">
+                        <strong>[PASO 8] Integración directa y término cuadrático:</strong><br>
                         Los dos primeros términos se resuelven por logaritmo natural y el último subiendo la potencia como exponente negativo (sustitución u⁻²):<br>
                         <br>
                         <strong>Resultado Final:</strong><br>
