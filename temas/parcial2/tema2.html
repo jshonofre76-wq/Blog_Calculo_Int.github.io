@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- Enlaces de Navegación Estructurada -->
+        <div class="navegacion-superior">
+            <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
+            <a href="tema2-caso2.html" class="siguiente-caso-btn">Ir al Caso 2: Factores Repetidos →</a>
+        </div>
+
+        <h1>Tema: Funciones Racionales (Fracciones Parciales)</h1>
+
+        <!-- FILA SUPERIOR: Teoría al lado del Video -->
+        <div class="fila-superior">
+            <div class="bloque">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    El método de fracciones parciales sirve para transformar integrales de funciones racionales complejas (cocientes de polinomios) en una suma de fracciones mucho más simples y fáciles de integrar mediante logaritmos naturales o funciones algebraicas básicas.
+                </p>
+                <p><strong>Caso 1:</strong> Se aplica cuando el denominador se descompone en factores lineales que son completamente distintos (no se repiten).</p>
+            </div>
+            
+            <div class="bloque" style="padding: 15px;">
+                <!-- Reemplazarás el src con tu video de Fracciones Parciales más adelante -->
+                <div class="video-pequeno">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial del tema"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicio al lado de las Preguntas -->
+        <div class="fila-inferior">
+            
+            <!-- Columna del Ejercicio por Pasos -->
+            <div class="bloque">
+                <h2>Caso 1: Factores Lineales No Repetidos</h2>
+                <p><strong>Problema:</strong> Resolver ∫ (5x + 3) / (x³ - 2x² - 3x) dx</p>
+                
+                <div class="controles-pasos">
+                    <button class="btn-paso" onclick="mostrarPaso(1)">Paso 1</button>
+                    <button class="btn-paso" onclick="mostrarPaso(2)">Paso 2</button>
+                    <button class="btn-paso" onclick="mostrarPaso(3)">Paso 3</button>
+                    <button class="btn-paso" onclick="mostrarPaso(4)">Paso 4</button>
+                    <button class="btn-paso" onclick="mostrarPaso(5)">Paso 5</button>
+                    <button class="btn-paso" onclick="mostrarPaso(6)">Paso 6</button>
+                </div>
+
+                <div class="pizarra-ejercicio">
+                    <div id="indicador-vacio">Haz clic en los botones numerados para desplegar el desarrollo algebraico.</div>
+                    
+                    <div id="paso1" class="paso-oculto">
+                        <strong>[PASO 1] Factorizar el denominador:</strong><br>
+                        x³ - 2x² - 3x = x(x² - 2x - 3)<br>
+                        = x(x - 3)(x + 1)<br>
+                        Tenemos 3 factores lineales diferentes.
+                    </div>
+                    
+                    <div id="paso2" class="paso-oculto">
+                        <strong>[PASO 2] Plantear la descomposición:</strong><br>
+                        (5x + 3) / [x(x-3)(x+1)] = A/x + B/(x-3) + C/(x+1)
+                    </div>
+                    
+                    <div id="paso3" class="paso-oculto">
+                        <strong>[PASO 3] Eliminar denominadores:</strong><br>
+                        Multiplicamos todo por el denominador común:<br>
+                        5x + 3 = A(x-3)(x+1) + Bx(x+1) + Cx(x-3)
+                    </div>
+                    
+                    <div id="paso4" class="paso-oculto">
+                        <strong>[PASO 4] Encontrar constantes (A, B, C):</strong><br>
+                        Evaluamos en los valores críticos que hacen cero los factores:<br>
+                        • Si x = 0  → 3 = A(-3)(1)  → A = -1<br>
+                        • Si x = 3  → 18 = B(3)(4)  → B = 18/12 = 3/2<br>
+                        • Si x = -1 → -2 = C(-1)(-4) → C = -2/4 = -1/2
+                    </div>
+                    
+                    <div id="paso5" class="paso-oculto">
+                        <strong>[PASO 5] Sustituir las constantes:</strong><br>
+                        Reescribimos nuestra integral original:<br>
+                        ∫ [ -1/x + (3/2)/(x-3) - (1/2)/(x+1) ] dx
+                    </div>
+                    
+                    <div id="paso6" class="paso-oculto">
+                        <strong>[PASO 6] Integrar término a término:</strong><br>
+                        Utilizando la fórmula ∫ dx/x = ln|x| + C:<br>
+                        <br>
+                        <strong>Resultado Final:</strong><br>
+                        -ln|x| + (3/2)ln|x-3| - (1/2)ln|x+1| + C
+                    </div>
+                </div>
+            </div>
+
+            <!-- Columna de las Preguntas de Aplicación -->
+            <div class="bloque">
+                <h2>Preguntas de Aplicación</h2>
+                                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
+                
+                <button class="btn-pregunta" onclick="mostrarRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarResgunta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <!-- Cuadro donde se inyecta la respuesta con el tamaño de letra grande -->
+                <div class="contenedor-respuesta">
+                    <div id="texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div> <!-- Aquí cierra el bloque derecho -->
+
+        </div> <!-- Aquí cierra la fila inferior de dos columnas -->
+    </main>
+
+    <!-- --- JAVASCRIPT CORREGIDO --- -->
+    <script>
+        function mostrarPaso(numeroPaso) {
+            document.getElementById('indicador-vacio').style.display = 'none';
+            document.getElementById('paso' + numeroPaso).style.display = 'block';
+        }
+
+        function mostrarRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('texto-respuesta');
+            
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos de Ingeniería Química y Fluidos:</strong> Se utiliza en el diseño de reactores químicos y tuberías de distribución para modelar la velocidad de concentración de sustancias disueltas a lo largo del tiempo.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Se aplica en la ecología y demografía para calcular el crecimiento de poblaciones biológicas que están limitadas por recursos finitos (modelos de crecimiento logístico).";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Computadores algebraicos (CAS) como <strong>WolframAlpha</strong>, el comando 'partfrac' en <strong>MATLAB</strong> o librerías de Python como <strong>SymPy</strong> realizan esta descomposición pesada al instante.";
+            }
+        }
+    </script>
+
+</body>
+</html>
