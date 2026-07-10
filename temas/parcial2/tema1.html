@@ -55,7 +55,6 @@
         h2 {
             color: #2c3e50;
             margin-top: 0;
-            font-size: 1.4fr;
         }
 
         /* --- EJERCICIO INTERACTIVO (IZQUIERDA) --- */
@@ -89,12 +88,13 @@
             min-height: 180px;
             font-family: 'Courier New', Courier, monospace;
             border-left: 5px solid #3498db;
+            line-height: 1.6;
         }
 
         .paso-oculto {
             display: none;
             margin-bottom: 15px;
-            animation: fadeIn 0.5s ease forwards;
+            animation: fadeIn 0.4s ease forwards;
         }
 
         /* --- PREGUNTAS Y RESPUESTAS (DERECHA) --- */
@@ -167,53 +167,52 @@
 <body>
 
     <main>
-        <!-- Enlace relativo para regresar al index.html principal -->
+        <!-- Enlace para regresar a la raíz principal -->
         <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
 
         <h1>Tema: Área Bajo la Curva</h1>
 
         <div class="contenido-grid">
             
-            <!-- COLUMNA IZQUIERDA: Teoría y Ejercicio -->
+            <!-- COLUMNA IZQUIERDA: Teoría y Ejercicio Real -->
             <div class="bloque">
                 <h2>¿Para qué sirve este tema?</h2>
                 <p>
-                    Permite determinar la magnitud del espacio bidimensional delimitado por la gráfica de una función matemática, el eje de las abscisas (Eje X) y un intervalo cerrado dado [a, b]. 
-                </p>
-                <p>
-                    Es la base del Teorema Fundamental del Cálculo y sirve para acumular magnitudes continuas a lo largo del tiempo o el espacio.
+                    Permite determinar la magnitud del espacio bidimensional delimitado por la gráfica de una función matemática, el eje de las abscisas (Eje X) y un intervalo cerrado dado [a, b].
                 </p>
 
                 <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
 
                 <h2>Ejercicio Práctico Interactivo</h2>
-                <p><strong>Problema:</strong> Hallar el área bajo la curva de la función f(x) = x² en el intervalo [0, 3].</p>
+                <p><strong>Problema del Profesor:</strong> Hallar el área (A) de f(x) = x³ + 1 en el intervalo (0, 3).</p>
                 
                 <div class="controles-pasos">
-                    <button class="btn-paso" onclick="mostrarPaso(1)">Paso 1: Plantear la Integral</button>
-                    <button class="btn-paso" onclick="mostrarPaso(2)">Paso 2: Integrar f(x)</button>
+                    <button class="btn-paso" onclick="mostrarPaso(1)">Paso 1: Plantear Integral</button>
+                    <button class="btn-paso" onclick="mostrarPaso(2)">Paso 2: Resolver Primitiva</button>
                     <button class="btn-paso" onclick="mostrarPaso(3)">Paso 3: Evaluar Límites</button>
                 </div>
 
-                <!-- Recuadro negro/pizarra donde se inyectará la solución -->
                 <div class="pizarra-ejercicio">
-                    <div id="indicador-vacio">Haz clic en los botones de arriba para desplegar el procedimiento paso a paso.</div>
+                    <div id="indicador-vacio">Haz clic en los botones de arriba para desplegar el procedimiento interactivo paso a paso.</div>
                     
                     <div id="paso1" class="paso-oculto">
-                        <strong>[PASO 1] Planteamiento:</strong><br>
-                        Área = ∫ desde 0 hasta 3 de (x²) dx
+                        <strong>[PASO 1] Planteamiento del Área:</strong><br>
+                        A = ₀∫³ (x³ + 1) dx
                     </div>
                     <div id="paso2" class="paso-oculto">
-                        <strong>[PASO 2] Integración Primitiva:</strong><br>
-                        ∫ x² dx = (x³ / 3)<br>
-                        *Nota: No agregamos la constante '+ C' porque es una integral definida.
+                        <strong>[PASO 2] Integración por separado:</strong><br>
+                        ∫ x³ dx = x⁴ / 4 <br>
+                        ∫ 1 dx = x <br>
+                        F(x) = (x⁴ / 4) + x
                     </div>
                     <div id="paso3" class="paso-oculto">
-                        <strong>[PASO 3] Teorema Fundamental (Evaluación):</strong><br>
-                        Evaluamos en el límite superior (3) menos el límite inferior (0):<br>
-                        = [ (3)³ / 3 ] - [ (0)³ / 3 ]<br>
-                        = [ 27 / 3 ] - [ 0 ]<br>
-                        = 9 unidades cuadradas (u²)
+                        <strong>[PASO 3] Aplicación del Teorema Fundamental:</strong><br>
+                        Evaluamos F(3) - F(0):<br>
+                        F(3) = (3⁴ / 4) + 3 = (81 / 4) + 3 = 20.25 + 3 = 23.25<br>
+                        F(0) = (0⁴ / 4) + 0 = 0<br>
+                        <br>
+                        <strong>Resultado Final:</strong><br>
+                        A = 23.25 unidades cuadradas (u²)
                     </div>
                 </div>
             </div>
@@ -227,7 +226,6 @@
                 <button class="btn-pregunta" onclick="mostrarRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
                 <button class="btn-pregunta" onclick="mostrarRespuesta(3)">3. ¿Qué software o tecnologías facilitan su cálculo?</button>
 
-                <!-- Cuadro dinámico de respuesta -->
                 <div class="contenedor-respuesta">
                     <div id="texto-respuesta" style="font-size: 14px; line-height: 1.5; color: #2c3e50;">
                         Selecciona una de las preguntas de arriba para desplegar la información aquí.
@@ -237,11 +235,10 @@
 
         </div>
 
-        <!-- SECCIÓN INFERIOR: Video de YouTube -->
+        <!-- SECCIÓN INFERIOR: Video de YouTube corregido -->
         <div class="video-seccion">
             <h2 style="margin-bottom: 15px;">Video Tutorial de Apoyo</h2>
             <div class="video-wrapper">
-                <!-- Se incrusta el mismo video introductorio o uno específico que decidas después -->
                 <iframe 
                     src="https://youtube.com" 
                     title="Video explicativo"
@@ -252,27 +249,25 @@
         </div>
     </main>
 
-    <!-- --- JAVASCRIPT PARA HACER LA PÁGINA INTERACTIVA --- -->
+    <!-- --- CÓDIGO JAVASCRIPT TOTALMENTE OPERATIVO --- -->
     <script>
-        // Lógica para ir llenando la pizarra paso a paso
         function mostrarPaso(numeroPaso) {
-            // Ocultar el mensaje inicial de pizarra vacía
             document.getElementById('indicador-vacio').style.display = 'none';
-            
-            // Hacer visible el paso solicitado
-            const paso = document.getElementById('paso' + numeroPaso);
-            paso.style.display = 'block';
+            document.getElementById('paso' + numeroPaso).style.display = 'block';
         }
 
-        // Lógica para cambiar las respuestas del bloque derecho
         function mostrarRespuesta(idPregunta) {
-            const cuadroTexto = document.getElementById('texto-respuesta');
+            var cuadroTexto = document.getElementById('texto-respuesta');
             
             if (idPregunta === 1) {
                 cuadroTexto.innerHTML = "<strong>Proyectos de Ingeniería y Arquitectura:</strong> Se aplica en el diseño estructural de puentes colgantes, techos curvos y presas hidráulicas, donde se requiere calcular la distribución exacta de fuerzas y cargas sobre superficies irregulares.";
             } else if (idPregunta === 2) {
-                cuadroTexto.innerHTML = "Aplicación en la vida real: Si manejas un negocio o analizas finanzas, el área bajo una curva de ingresos frente al tiempo representa las ganancias totales acumuladas en ese periodo. En medicina, mide la concentración total de un medicamento en la sangre.";
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Si analizas finanzas, el área bajo una curva de ingresos frente al tiempo representa las <strong>ganancias totales</strong> acumuladas en ese periodo. En medicina, mide la concentración total de un fármaco en la sangre.";
             } else if (idPregunta === 3) {
-                cuadroTexto.innerHTML = "Herramientas tecnológicas: En el ámbito académico y profesional se utilizan softwares geométricos y de programación como GeoGebra (ideal para visualizar los rectángulos de Riemann), MATLAB, WolframAlpha y Python (con la librería SciPy) para resolver áreas complejas al instante.";
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> En el ámbito académico y profesional se utilizan softwares geométricos y de programación como <strong>GeoGebra</strong> (ideal para visualizar los rectángulos de Riemann), <strong>MATLAB</strong> y WolframAlpha para resolver áreas complejas al instante.";
             }
         }
+    </script>
+
+</body>
+</html>
