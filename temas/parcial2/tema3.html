@@ -252,7 +252,7 @@
             </div>
 
             <!-- Preguntas de Aplicación -->
-            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 20px; align-self: start;">
                 <h2>Preguntas de Aplicación</h2>
                 <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarVolumenRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
                 <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarVolumenRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
@@ -329,11 +329,11 @@
         function mostrarVolumenRespuesta(id) {
             const txt = document.getElementById('v-texto-respuesta');
             if (id === 1) {
-                txt.innerHTML = "Proyectos Industriales y de Tornería: Es clave en la manufactura computarizada (tornillos, pistones, botellas plásticas) para calcular el volumen exacto de materia prima requerida antes del vaciado fundido.";
+                txt.innerHTML = "<strong>Proyectos Industriales y de Tornería:</strong> Es clave en la manufactura computarizada (tornillos, pistones, botellas plásticas) para calcular el volumen exacto de materia prima requerida antes del vaciado fundido.";
             } else if (id === 2) {
-                txt.innerHTML = "Aplicación en la vida real: Se utiliza en obras civiles para estimar la capacidad cúbica de tanques de agua con perfiles parabólicos u ovoides, asegurando su resistencia estructural.";
+                txt.innerHTML = "<strong>Aplicación en la vida real:</strong> Se utiliza en obras civiles para estimar la capacidad cúbica de tanques de agua con perfiles parabólicos u ovoides, asegurando su resistencia estructural.";
             } else if (id === 3) {
-                txt.innerHTML = "Herramientas tecnológicas: Se emplea el comando 'VolumeOfRevolution' en GeoGebra 3D, el software de modelado SolidWorks, o scripts avanzados de Python (Matplotlib) para renderizar el sólido en tres dimensiones.";
+                txt.innerHTML = "<strong>Herramientas tecnológicas:</strong> Se emplea el comando 'VolumeOfRevolution' en GeoGebra 3D, el software de modelado SolidWorks, o scripts avanzados de Python (Matplotlib) para renderizar el sólido en tres dimensiones.";
             }
         }
     </script>
