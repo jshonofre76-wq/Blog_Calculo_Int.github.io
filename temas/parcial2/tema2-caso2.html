@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Funciones Racionales - Caso 1</title>
+    <title>Funciones Racionales - Caso 2</title>
     <style>
         body {
             font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
@@ -24,7 +24,7 @@
         h1 {
             color: #2c3e50;
             text-align: center;
-            border-bottom: 3px solid #3498db;
+            border-bottom: 3px solid #e67e22;
             padding-bottom: 10px;
             margin-bottom: 20px;
         }
@@ -43,9 +43,9 @@
             font-weight: bold;
         }
 
-        .siguiente-caso-btn {
+        .caso-anterior-btn {
             text-decoration: none;
-            background-color: #e67e22;
+            background-color: #34495e;
             color: white;
             padding: 10px 15px;
             border-radius: 5px;
@@ -53,8 +53,8 @@
             transition: background 0.2s;
         }
 
-        .siguiente-caso-btn:hover {
-            background-color: #d35400;
+        .caso-anterior-btn:hover {
+            background-color: #2c3e50;
         }
 
         /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
@@ -133,7 +133,7 @@
             border-radius: 6px;
             min-height: 220px;
             font-family: 'Courier New', Courier, monospace;
-            border-left: 5px solid #3498db;
+            border-left: 5px solid #e67e22;
             line-height: 1.6;
         }
 
@@ -165,7 +165,7 @@
 
         .contenedor-respuesta {
             background: #edf7fd;
-            border-left: 4px solid #3498db;
+            border-left: 4px solid #e67e22;
             padding: 15px;
             border-radius: 4px;
             margin-top: 15px;
@@ -188,7 +188,7 @@
         <!-- Enlaces de Navegación Estructurada -->
         <div class="navegacion-superior">
             <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
-            <a href="tema2-caso2.html" class="siguiente-caso-btn">Ir al Caso 2: Factores Repetidos →</a>
+            <a href="tema2.html" class="caso-anterior-btn">← Volver al Caso 1: Factores Simples</a>
         </div>
 
         <h1>Tema: Funciones Racionales (Fracciones Parciales)</h1>
@@ -198,17 +198,17 @@
             <div class="bloque">
                 <h2>¿Para qué sirve este tema?</h2>
                 <p>
-                    El método de fracciones parciales sirve para transformar integrales de funciones racionales complejas (cocientes de polinomios) en una suma de fracciones mucho más simples y fáciles de integrar mediante logaritmos naturales o funciones algebraicas básicas.
+                    Cuando trabajamos con fracciones parciales, no siempre los factores del denominador son distintos. El método nos ayuda a atacar polinomios donde los valores algebraicos se repiten.
                 </p>
-                <p><strong>Caso 1:</strong> Se aplica cuando el denominador se descompone en factores lineales que son completamente distintos (no se repiten).</p>
+                <p><strong>Caso 2:</strong> Se aplica estrictamente cuando un factor lineal en el denominador aparece elevado a una potencia mayor que uno, lo que nos obliga a crear una fracción por cada potencia existente de forma ascendente.</p>
             </div>
             
             <div class="bloque" style="padding: 15px;">
-                <!-- Reemplazarás el src con tu video de Fracciones Parciales más adelante -->
                 <div class="video-pequeno">
+                    <!-- Recuerda cambiar este enlace de embed por el video real de Caso 2 cuando lo tengas -->
                     <iframe 
                         src="https://youtube.com" 
-                        title="Video tutorial del tema"
+                        title="Video tutorial Caso 2"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>
@@ -221,8 +221,8 @@
             
             <!-- Columna del Ejercicio por Pasos -->
             <div class="bloque">
-                <h2>Caso 1: Factores Lineales No Repetidos</h2>
-                <p><strong>Problema:</strong> Resolver ∫ (5x + 3) / (x³ - 2x² - 3x) dx</p>
+                <h2>Caso 2: Factores Lineales Repetidos</h2>
+                <p><strong>Problema:</strong> Resolver ∫ (3x² - 8x + 13) / ((x + 3)(x - 1)²) dx</p>
                 
                 <div class="controles-pasos">
                     <button class="btn-paso" onclick="mostrarPaso(1)">Paso 1</button>
@@ -231,74 +231,90 @@
                     <button class="btn-paso" onclick="mostrarPaso(4)">Paso 4</button>
                     <button class="btn-paso" onclick="mostrarPaso(5)">Paso 5</button>
                     <button class="btn-paso" onclick="mostrarPaso(6)">Paso 6</button>
+                    <button class="btn-paso" onclick="mostrarPaso(7)">Paso 7</button>
                 </div>
 
                 <div class="pizarra-ejercicio">
                     <div id="indicador-vacio">Haz clic en los botones numerados para desplegar el desarrollo algebraico.</div>
                     
                     <div id="paso1" class="paso-oculto">
-                        <strong>[PASO 1] Factorizar el denominador:</strong><br>
-                        x³ - 2x² - 3x = x(x² - 2x - 3)<br>
-                        = x(x - 3)(x + 1)<br>
-                        Tenemos 3 factores lineales diferentes.
+                        <strong>[PASO 1] Verificar y factorizar:</strong><br>
+                        El grado del numerador (2) es menor al del denominador (3).<br>
+                        Denominador ya factorizado: (x + 3)(x - 1)²<br>
+                        El factor (x - 1) está repetido 2 veces.
                     </div>
                     
                     <div id="paso2" class="paso-oculto">
-                        <strong>[PASO 2] Plantear la descomposición:</strong><br>
-                        (5x + 3) / [x(x-3)(x+1)] = A/x + B/(x-3) + C/(x+1)
+                        <strong>[PASO 2] Escribir la descomposición armónica:</strong><br>
+                        Colocamos una fracción por cada potencia del término repetido:<br>
+                        3x²-8x+13 / [(x+3)(x-1)²] = A/(x+3) + B/(x-1) + C/(x-1)²
                     </div>
                     
                     <div id="paso3" class="paso-oculto">
-                        <strong>[PASO 3] Eliminar denominadores:</strong><br>
-                        Multiplicamos todo por el denominador común:<br>
-                        5x + 3 = A(x-3)(x+1) + Bx(x+1) + Cx(x-3)
+                        <strong>[PASO 3] Eliminar los denominadores común:</strong><br>
+                        Multiplicamos ambos miembros por (x + 3)(x - 1)²:<br>
+                        3x² - 8x + 13 = A(x-1)² + B(x+3)(x-1) + C(x+3)
                     </div>
                     
                     <div id="paso4" class="paso-oculto">
-                        <strong>[PASO 4] Encontrar constantes (A, B, C):</strong><br>
-                        Evaluamos en los valores críticos que hacen cero los factores:<br>
-                        • Si x = 0  → 3 = A(-3)(1)  → A = -1<br>
-                        • Si x = 3  → 18 = B(3)(4)  → B = 18/12 = 3/2<br>
-                        • Si x = -1 → -2 = C(-1)(-4) → C = -2/4 = -1/2
+                        <strong>[PASO 4] Expandir algebraicamente y agrupar:</strong><br>
+                        Desarrollamos los productos del lado derecho:<br>
+                        3x² - 8x + 13 = (A + B)x² + (-2A + 2B + C)x + (A - 3B + 3C)
                     </div>
                     
                     <div id="paso5" class="paso-oculto">
-                        <strong>[PASO 5] Sustituir las constantes:</strong><br>
-                        Reescribimos nuestra integral original:<br>
-                        ∫ [ -1/x + (3/2)/(x-3) - (1/2)/(x+1) ] dx
+                        <strong>[PASO 5] Formar e igualar coeficientes:</strong><br>
+                        Armamos el sistema de ecuaciones comparando términos semejantes:<br>
+                        1) A + B = 3<br>
+                        2) -2A + 2B + C = -8<br>
+                        3) A - 3B + 3C = 13<br>
+                        <br>
+                        Resolviendo el sistema obtenemos: <strong>A = 4, B = -1, C = -2</strong>
                     </div>
                     
                     <div id="paso6" class="paso-oculto">
-                        <strong>[PASO 6] Integrar término a término:</strong><br>
-                        Utilizando la fórmula ∫ dx/x = ln|x| + C:<br>
+                        <strong>[PASO 6] Sustituir los valores hallados:</strong><br>
+                        Nuestra integral original se transforma en:<br>
+                        ∫ [ 4/(x+3) - 1/(x-1) - 2/(x-1)² ] dx
+                    </div>
+
+                    <div id="paso6" class="paso-oculto">
+                        <strong>[PASO 6] Sustituir los valores hallados:</strong><br>
+                        Nuestra integral original se transforma en:<br>
+                        ∫ [ 4/(x+3) - 1/(x-1) - 2/(x-1)² ] dx
+                    </div>
+
+                    <div id="paso7" class="paso-oculto">
+                        <strong>[PASO 7] Integración directa y término cuadrático:</strong><br>
+                        Los dos primeros términos se resuelven por logaritmo natural y el último subiendo la potencia como exponente negativo (sustitución u⁻²):<br>
                         <br>
                         <strong>Resultado Final:</strong><br>
-                        -ln|x| + (3/2)ln|x-3| - (1/2)ln|x+1| + C
+                        4ln|x + 3| - ln|x - 1| + 2/(x - 1) + C
                     </div>
-                </div>
-            </div>
+
+
+                </div> <!-- Aquí cierra la pizarra-ejercicio -->
+            </div> <!-- Aquí cierra la columna del ejercicio -->
 
             <!-- Columna de las Preguntas de Aplicación -->
             <div class="bloque">
                 <h2>Preguntas de Aplicación</h2>
-                                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
+                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
                 
                 <button class="btn-pregunta" onclick="mostrarRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
                 <button class="btn-pregunta" onclick="mostrarRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
                 <button class="btn-pregunta" onclick="mostrarRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
 
-                <!-- Cuadro donde se inyecta la respuesta con el tamaño de letra grande -->
                 <div class="contenedor-respuesta">
                     <div id="texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
                         Selecciona una de las preguntas de arriba para desplegar la información aquí.
                     </div>
                 </div>
-            </div> <!-- Aquí cierra el bloque derecho -->
+            </div>
 
-        </div> <!-- Aquí cierra la fila inferior de dos columnas -->
+        </div> <!-- Aquí cierra la fila inferior -->
     </main>
 
-    <!-- --- JAVASCRIPT CORREGIDO --- -->
     <script>
         function mostrarPaso(numeroPaso) {
             document.getElementById('indicador-vacio').style.display = 'none';
@@ -309,11 +325,11 @@
             var cuadroTexto = document.getElementById('texto-respuesta');
             
             if (idPregunta === 1) {
-                cuadroTexto.innerHTML = "<strong>Proyectos de Ingeniería Química y Fluidos:</strong> Se utiliza en el diseño de reactores químicos y tuberías de distribución para modelar la velocidad de concentración de sustancias disueltas a lo largo del tiempo.";
+                cuadroTexto.innerHTML = "<strong>Proyectos de Mecánica Estructural y Vibraciones:</strong> Se utiliza para calcular las respuestas en sistemas oscilatorios donde existen fuerzas amortiguadas críticas redundantes, lo que genera raíces repetidas en las ecuaciones de diseño.";
             } else if (idPregunta === 2) {
-                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Se aplica en la ecología y demografía para calcular el crecimiento de poblaciones biológicas que están limitadas por recursos finitos (modelos de crecimiento logístico).";
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> En el análisis de circuitos eléctricos (Ingeniería Eléctrica), ayuda a modelar la corriente transitoria de circuitos RLC cuando el sistema alcanza un estado conocido como 'amortiguamiento crítico'.";
             } else if (idPregunta === 3) {
-                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Computadores algebraicos (CAS) como <strong>WolframAlpha</strong>, el comando 'partfrac' en <strong>MATLAB</strong> o librerías de Python como <strong>SymPy</strong> realizan esta descomposición pesada al instante.";
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Para raíces repetidas complejas, calculadoras científicas avanzadas (como la TI-Nspire CX CAS), el entorno de programación <strong>RStudio</strong> o la plataforma en la nube <strong>WolframAlpha</strong> reducen horas de álgebra a segundos.";
             }
         }
     </script>
