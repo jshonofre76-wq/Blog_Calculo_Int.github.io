@@ -3,103 +3,209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título Principal - Cálculo Integral</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>Curso de Cálculo Integral</title>
     <style>
-        .animated {
-            animation: slideUp 1s ease;
-        }
-        
-        @keyframes slideUp {
-            from { transform: translateY(-50px); opacity: 0; }
-            to { transform: translateY(0); opacity: 1; }
+        /* --- ESTILOS GENERALES Y LIGEROS --- */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
-        .dropdown-content {
-            display: none;
+        main {
+            max-width: 900px;
+            width: 100%;
+        }
+
+        /* --- ANIMACIÓN DEL TÍTULO (Izquierda a Derecha) --- */
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+            background: #2c3e50;
+            border-radius: 8px;
+            padding: 10px 0;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .marquee-text {
+            display: inline-block;
+            white-space: nowrap;
+            font-size: 24px;
+            font-weight: bold;
+            color: #ffffff;
+            animation: moverTexto 12s linear infinite;
+        }
+
+        @keyframes moverTexto {
+            0% { transform: translate3d(-100%, 0, 0); }
+            100% { transform: translate3d(100%, 0, 0); }
+        }
+
+        /* --- SECCIÓN INTRODUCTORIA (Texto e Imagen) --- */
+        .intro-section {
+            display: flex;
+            gap: 20px;
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            margin-bottom: 25px;
+            align-items: center;
+        }
+
+        .intro-text {
+            flex: 1;
+            line-height: 1.6;
+        }
+
+        .intro-image {
+            flex: 1;
+            max-width: 100%;
+            height: auto;
+            border-radius: 6px;
+            border: 1px solid #ddd;
+        }
+
+        /* --- SECCIÓN MULTIMEDIA (Video de YouTube) --- */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            height: 0;
+            overflow: hidden;
+            background: #000;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        .video-container iframe {
             position: absolute;
-            background-color: #f9f9f9;
-            min-width: 160px;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-            z-index: 1;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
 
-        .dropdown-content a {
-            color: black;
-            padding: 12px 16px;
-            text-decoration: none;
+        /* --- PANELES DE NAVEGACIÓN (Los Dos Cuadros de Parciales) --- */
+        .parciales-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 25px;
+            margin-bottom: 40px;
+        }
+
+        .cuadro-parcial {
+            background: white;
+            border: 2px solid #34495e;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .cuadro-parcial h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            border-bottom: 2px solid #ecf0f1;
+            padding-bottom: 10px;
+        }
+
+        /* --- BOTONES INTERACTIVOS --- */
+        .btn-tema {
             display: block;
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            background-color: #3498db;
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            border-radius: 5px;
+            transition: background 0.2s ease, transform 0.1s ease;
+            box-sizing: border-box;
         }
 
-        .dropdown-content a:hover {background-color: #f1f1f1}
+        .btn-tema:hover {
+            background-color: #2980b9;
+            transform: scale(1.02);
+        }
+
+        .btn-tema:active {
+            transform: scale(0.98);
+        }
+
+        /* Responsivo para pantallas pequeñas */
+        @media (max-width: 768px) {
+            .intro-section { flex-direction: column; }
+            .parciales-container { grid-template-columns: 1fr; }
+        }
     </style>
 </head>
 <body>
 
-<!-- Header -->
-<header class="animated">
-    <h1>Título Principal</h1>
-</header>
+    <main>
+        <!-- 1. Encabezado Animado de Izquierda a Derecha -->
+        <div class="marquee-container">
+            <div class="marquee-text">Proyecto de Aula: Asignatura de Cálculo Integral</div>
+        </div>
 
-<!-- Main Content -->
-<main class="main-content animated">
-    <!-- Definición y Conceptos de Cálculo Integral -->
-    <section id="definition" class="content-section animated">
-        <h2>Definición y Conceptos de Cálculo Integral</h2>
-        <p>Aquí puedes agregar una descripción detallada sobre el cálculo integral. Puedes usar párrafos, listas o imágenes para explicar sus principios básicos.</p>
-    </section>
+        <!-- 2. Sección Teórica con Definición e Imagen -->
+        <section class="intro-section">
+            <div class="intro-text">
+                <h2>¿Qué es el Cálculo Integral?</h2>
+                <p>
+                    El <strong>cálculo integral</strong> es una rama de las matemáticas que se encarga del estudio de la integración o antiderivación. Su principal objetivo es hallar la función original (primitiva) a partir de su derivada, además de permitir el cálculo de áreas y volúmenes de regiones y sólidos de revolución complejos.
+                </p>
+                <p>
+                    Funciona de forma inversa a la diferenciación y es una herramienta fundamental en áreas como la ingeniería, la física y la economía.
+                </p>
+            </div>
+            <!-- Imagen ilustrativa temporal usando una URL libre (Área bajo la curva) -->
+            <img class="intro-image" src="https://unsplash.com" alt="Gráfica matemática de cálculo integral">
+        </section>
 
-    <!-- Parciales -->
-    <div class="content-section animated">
-        <h2>Parciales</h2>
-        <a href="#primer-parcial" onclick="showParchial('parcial1')">Primer Parcial</a>
-        <a href="#segundo-parcial" onclick="showParchial('parcial2')">Segundo Parcial</a>
-    </div>
+        <!-- 3. Sección de Video de YouTube Incrustado -->
+        <section class="video-container">
+            <iframe 
+                src="https://youtube.com" 
+                title="Integrales | Introducción" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+            </iframe >
+        </section>
 
-    <!-- Contenido de los Parciales -->
-    <section id="primer-parcial" class="content-section animated">
-        <h3>Primer Parcial</h3>
-        <p>Listado de preguntas y respuestas para el primer parcial.</p>
-        <!-- Agrega botones o enlaces para cada tema -->
-    </section>
+        <!-- 4. Cuadros de los Parciales con Enlaces Relativos -->
+        <section class="parciales-container">
+            
+            <!-- Cuadro Primer Parcial -->
+            <div class="cuadro-parcial">
+                <h2>Primer Parcial</h2>
+                <a href="temas/parcial1/tema1.html" class="btn-tema">Tema 1</a>
+                <a href="temas/parcial1/tema2.html" class="btn-tema">Tema 2</a>
+                <a href="temas/parcial1/tema3.html" class="btn-tema">Tema 3</a>
+                <a href="temas/parcial1/tema4.html" class="btn-tema">Tema 4</a>
+                <a href="temas/parcial1/tema5.html" class="btn-tema">Tema 5</a>
+            </div>
 
-    <section id="segundo-parcial" class="content-section animated">
-        <h3>Segundo Parcial</h3>
-        <p>Listado de preguntas y respuestas para el segundo parcial.</p>
-        <!-- Agrega botones o enlaces para cada tema -->
-    </section>
+            <!-- Cuadro Segundo Parcial -->
+            <div class="cuadro-parcial">
+                <h2>Segundo Parcial</h2>
+                <a href="temas/parcial2/tema1.html" class="btn-tema">Tema 6</a>
+                <a href="temas/parcial2/tema2.html" class="btn-tema">Tema 7</a>
+                <a href="temas/parcial2/tema3.html" class="btn-tema">Tema 8</a>
+                <a href="temas/parcial2/tema4.html" class="btn-tema">Tema 9</a>
+                <a href="temas/parcial2/tema5.html" class="btn-tema">Tema 10</a>
+            </div>
 
-    <!-- Video -->
-    <div class="content-section animated">
-        <h2>Videos y Descripciones</h2>
-        <button onclick="showVideo('your-video-id-here')">Ver Video</button>
-        <!-- Añade un iframe para mostrar el video de YouTube si es necesario -->
-    </div>
+        </section>
+    </main>
 
-    <!-- Contenido Adicional -->
-    <section id="additional-content" class="content-section animated">
-        <h2>Contenido Adicional</h2>
-        <!-- Aquí puedes agregar cualquier otro contenido que deseas, como definiciones adicionales o enlaces internos -->
-    </section>
-</main>
-
-<script>
-    function showParchial(parchialId) {
-        // Mostrar el contenido del parcial seleccionado
-        document.getElementById(parchialId).style.display = 'block';
-
-        // Ocultar los contenidos de otros parciales
-        hideParcial1();
-        hideParcial2();
-    }
-
-    function hideParcial1() {
-        // Ocultar el contenido del primer parcial
-        document.getElementById('primer-parcial').style.display = 'none';
-    }
-
-    function hideParcial2() {
-        // Ocultar el contenido del segundo parcial
-        document.getElementById('segundo-parcial').style.display = 'none';
-    }
-</script>
+</body>
+</html>
