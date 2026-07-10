@@ -14,6 +14,24 @@
             from { transform: translateY(-50px); opacity: 0; }
             to { transform: translateY(0); opacity: 1; }
         }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
     </style>
 </head>
 <body>
@@ -24,30 +42,35 @@
 </header>
 
 <!-- Main Content -->
-<main class="main-content">
-    <!-- Definición de Cálculo Integral -->
+<main class="main-content animated">
+    <!-- Definición y Conceptos de Cálculo Integral -->
     <section id="definition" class="content-section animated">
         <h2>Definición y Conceptos de Cálculo Integral</h2>
         <p>Aquí puedes agregar una descripción detallada sobre el cálculo integral. Puedes usar párrafos, listas o imágenes para explicar sus principios básicos.</p>
     </section>
 
-    <!-- Temas -->
+    <!-- Parcial 1 y Parcial 2 -->
     <div class="content-section animated">
-        <h2>Temas</h2>
-        <ul>
-            <li><a href="#parcial1">Primer Parcial</a></li>
-            <li><a href="#parcial2">Segundo Parcial</a></li>
-        </ul>
+        <h2>Parciales</h2>
+        <button class="dropdown" onclick="toggleDropdown('parcial1')">Primer Parcial</button>
+        <div id="parcial1" class="dropdown-content">
+            <a href="#primer-parcial-temas">Listado de temas</a>
+        </div>
+
+        <button class="dropdown" onclick="toggleDropdown('parcial2')">Segundo Parcial</button>
+        <div id="parcial2" class="dropdown-content">
+            <a href="#segundo-parcial-temas">Listado de temas</a>
+        </div>
     </div>
 
-    <!-- Contenido de los Parciales -->
-    <section id="parcial1" class="content-section animated">
+    <!-- Listado de Temas -->
+    <section id="primer-parcial-temas" class="content-section animated">
         <h3>Primer Parcial</h3>
         <p>Listado de preguntas y respuestas para el primer parcial.</p>
         <!-- Agrega botones o enlaces para cada tema -->
     </section>
 
-    <section id="parcial2" class="content-section animated">
+    <section id="segundo-parcial-temas" class="content-section animated">
         <h3>Segundo Parcial</h3>
         <p>Listado de preguntas y respuestas para el segundo parcial.</p>
         <!-- Agrega botones o enlaces para cada tema -->
