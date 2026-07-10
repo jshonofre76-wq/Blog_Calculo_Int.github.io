@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Área Bajo la Curva - Cálculo Integral</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        .volver-btn {
+            display: inline-block;
+            margin-bottom: 20px;
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        /* --- DISTRIBUCIÓN EN DOS COLUMNAS --- */
+        .contenido-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 1.4fr;
+        }
+
+        /* --- EJERCICIO INTERACTIVO (IZQUIERDA) --- */
+        .controles-pasos {
+            display: flex;
+            gap: 10px;
+            margin: 20px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 180px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.5s ease forwards;
+        }
+
+        /* --- PREGUNTAS Y RESPUESTAS (DERECHA) --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        /* --- VIDEO (ABAJO) --- */
+        .video-seccion {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            text-align: center;
+        }
+
+        .video-wrapper {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .video-wrapper iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            border-radius: 6px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .contenido-grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <main>
+        <!-- Enlace relativo para regresar al index.html principal -->
+        <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
+
+        <h1>Tema: Área Bajo la Curva</h1>
+
+        <div class="contenido-grid">
+            
+            <!-- COLUMNA IZQUIERDA: Teoría y Ejercicio -->
+            <div class="bloque">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    Permite determinar la magnitud del espacio bidimensional delimitado por la gráfica de una función matemática, el eje de las abscisas (Eje X) y un intervalo cerrado dado [a, b]. 
+                </p>
+                <p>
+                    Es la base del Teorema Fundamental del Cálculo y sirve para acumular magnitudes continuas a lo largo del tiempo o el espacio.
+                </p>
+
+                <hr style="border: 0; border-top: 1px solid #eee; margin: 25px 0;">
+
+                <h2>Ejercicio Práctico Interactivo</h2>
+                <p><strong>Problema:</strong> Hallar el área bajo la curva de la función f(x) = x² en el intervalo [0, 3].</p>
+                
+                <div class="controles-pasos">
+                    <button class="btn-paso" onclick="mostrarPaso(1)">Paso 1: Plantear la Integral</button>
+                    <button class="btn-paso" onclick="mostrarPaso(2)">Paso 2: Integrar f(x)</button>
+                    <button class="btn-paso" onclick="mostrarPaso(3)">Paso 3: Evaluar Límites</button>
+                </div>
+
+                <!-- Recuadro negro/pizarra donde se inyectará la solución -->
+                <div class="pizarra-ejercicio">
+                    <div id="indicador-vacio">Haz clic en los botones de arriba para desplegar el procedimiento paso a paso.</div>
+                    
+                    <div id="paso1" class="paso-oculto">
+                        <strong>[PASO 1] Planteamiento:</strong><br>
+                        Área = ∫ desde 0 hasta 3 de (x²) dx
+                    </div>
+                    <div id="paso2" class="paso-oculto">
+                        <strong>[PASO 2] Integración Primitiva:</strong><br>
+                        ∫ x² dx = (x³ / 3)<br>
+                        *Nota: No agregamos la constante '+ C' porque es una integral definida.
+                    </div>
+                    <div id="paso3" class="paso-oculto">
+                        <strong>[PASO 3] Teorema Fundamental (Evaluación):</strong><br>
+                        Evaluamos en el límite superior (3) menos el límite inferior (0):<br>
+                        = [ (3)³ / 3 ] - [ (0)³ / 3 ]<br>
+                        = [ 27 / 3 ] - [ 0 ]<br>
+                        = 9 unidades cuadradas (u²)
+                    </div>
+                </div>
+            </div>
+
+            <!-- COLUMNA DERECHA: Bloque de Preguntas -->
+            <div class="bloque">
+                <h2>Preguntas de Aplicación</h2>
+                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta analítica:</p>
+                
+                <button class="btn-pregunta" onclick="mostrarRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarRespuesta(3)">3. ¿Qué software o tecnologías facilitan su cálculo?</button>
+
+                <!-- Cuadro dinámico de respuesta -->
+                <div class="contenedor-respuesta">
+                    <div id="texto-respuesta" style="font-size: 14px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+        <!-- SECCIÓN INFERIOR: Video de YouTube -->
+        <div class="video-seccion">
+            <h2 style="margin-bottom: 15px;">Video Tutorial de Apoyo</h2>
+            <div class="video-wrapper">
+                <!-- Se incrusta el mismo video introductorio o uno específico que decidas después -->
+                <iframe 
+                    src="https://youtube.com" 
+                    title="Video explicativo"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                    allowfullscreen>
+                </iframe>
+            </div>
+        </div>
+    </main>
+
+    <!-- --- JAVASCRIPT PARA HACER LA PÁGINA INTERACTIVA --- -->
+    <script>
+        // Lógica para ir llenando la pizarra paso a paso
+        function mostrarPaso(numeroPaso) {
+            // Ocultar el mensaje inicial de pizarra vacía
+            document.getElementById('indicador-vacio').style.display = 'none';
+            
+            // Hacer visible el paso solicitado
+            const paso = document.getElementById('paso' + numeroPaso);
+            paso.style.display = 'block';
+        }
+
+        // Lógica para cambiar las respuestas del bloque derecho
+        function mostrarRespuesta(idPregunta) {
+            const cuadroTexto = document.getElementById('texto-respuesta');
+            
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos de Ingeniería y Arquitectura:</strong> Se aplica en el diseño estructural de puentes colgantes, techos curvos y presas hidráulicas, donde se requiere calcular la distribución exacta de fuerzas y cargas sobre superficies irregulares.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "Aplicación en la vida real: Si manejas un negocio o analizas finanzas, el área bajo una curva de ingresos frente al tiempo representa las ganancias totales acumuladas en ese periodo. En medicina, mide la concentración total de un medicamento en la sangre.";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "Herramientas tecnológicas: En el ámbito académico y profesional se utilizan softwares geométricos y de programación como GeoGebra (ideal para visualizar los rectángulos de Riemann), MATLAB, WolframAlpha y Python (con la librería SciPy) para resolver áreas complejas al instante.";
+            }
+        }
