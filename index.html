@@ -1,3 +1,47 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Título Principal - Cálculo Integral</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .animated {
+            animation: slideUp 1s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #f9f9f9;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: black;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {background-color: #f1f1f1}
+    </style>
+</head>
+<body>
+
+<!-- Header -->
+<header class="animated">
+    <h1>Título Principal</h1>
+</header>
+
+<!-- Main Content -->
 <main class="main-content animated">
     <!-- Definición y Conceptos de Cálculo Integral -->
     <section id="definition" class="content-section animated">
@@ -38,3 +82,24 @@
         <!-- Aquí puedes agregar cualquier otro contenido que deseas, como definiciones adicionales o enlaces internos -->
     </section>
 </main>
+
+<script>
+    function showParchial(parchialId) {
+        // Mostrar el contenido del parcial seleccionado
+        document.getElementById(parchialId).style.display = 'block';
+
+        // Ocultar los contenidos de otros parciales
+        hideParcial1();
+        hideParcial2();
+    }
+
+    function hideParcial1() {
+        // Ocultar el contenido del primer parcial
+        document.getElementById('primer-parcial').style.display = 'none';
+    }
+
+    function hideParcial2() {
+        // Ocultar el contenido del segundo parcial
+        document.getElementById('segundo-parcial').style.display = 'none';
+    }
+</script>
