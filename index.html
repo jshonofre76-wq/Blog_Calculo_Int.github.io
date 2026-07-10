@@ -3,42 +3,78 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Título de la página</title>
+    <title>Título Principal - Cálculo Integral</title>
     <link rel="stylesheet" href="styles.css">
+    <style>
+        .animated {
+            animation: slideUp 1s ease;
+        }
+        
+        @keyframes slideUp {
+            from { transform: translateY(-50px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+    </style>
 </head>
 <body>
-    <!-- Header -->
-    <header class="header">
-        <h1>Título Principal</h1>
-        <nav>
-            <ul>
-                <li><a href="#tema-1">Tema 1</a></li>
-                <li><a href="#tema-2">Tema 2</a></li>
-                <!-- Agrega más temas según sea necesario -->
-            </ul>
-        </nav>
-    </header>
 
-    <!-- Main Content -->
-    <main class="main-content">
-        <section id="tema-1" class="content-section">
-            <h2>Tema 1</h2>
-            <button onclick="activarEjercicio('tema-1')">Activar Ejercicio</button>
-            <!-- Agrega enlaces para videos y listas de respuestas -->
-        </section>
+<!-- Header -->
+<header class="animated">
+    <h1>Título Principal</h1>
+</header>
 
-        <!-- Otros temas con botones interactivos -->
+<!-- Main Content -->
+<main class="main-content">
+    <!-- Definición de Cálculo Integral -->
+    <section id="definition" class="content-section animated">
+        <h2>Definición y Conceptos de Cálculo Integral</h2>
+        <p>Aquí puedes agregar una descripción detallada sobre el cálculo integral. Puedes usar párrafos, listas o imágenes para explicar sus principios básicos.</p>
+    </section>
 
-    </main>
+    <!-- Temas -->
+    <div class="content-section animated">
+        <h2>Temas</h2>
+        <ul>
+            <li><a href="#parcial1">Primer Parcial</a></li>
+            <li><a href="#parcial2">Segundo Parcial</a></li>
+        </ul>
+    </div>
 
-    <!-- Footer -->
-    <footer class="footer">
-        <p>Para qué nos sirve aprender este tema?</p>
-        <a href="#">En qué tipos de proyecto se aplica este tema?</a>
-        <a href="#">En la vida real, como podríamos aplicar este tema?</a>
-    </footer>
+    <!-- Contenido de los Parciales -->
+    <section id="parcial1" class="content-section animated">
+        <h3>Primer Parcial</h3>
+        <p>Listado de preguntas y respuestas para el primer parcial.</p>
+        <!-- Agrega botones o enlaces para cada tema -->
+    </section>
 
-    <!-- Scripts -->
-    <script src="src/scripts.js"></script>
+    <section id="parcial2" class="content-section animated">
+        <h3>Segundo Parcial</h3>
+        <p>Listado de preguntas y respuestas para el segundo parcial.</p>
+        <!-- Agrega botones o enlaces para cada tema -->
+    </section>
+
+    <!-- Video -->
+    <div class="content-section animated">
+        <h2>Videos y Descripciones</h2>
+        <button onclick="showVideo('your-video-id-here')">Ver Video</button>
+        <!-- Añade un iframe para mostrar el video de YouTube si es necesario -->
+    </div>
+
+    <!-- Contenido Adicional -->
+    <section id="additional-content" class="content-section animated">
+        <h2>Contenido Adicional</h2>
+        <!-- Aquí puedes agregar cualquier otro contenido que deseas, como definiciones adicionales o enlaces internos -->
+    </section>
+</main>
+
+<!-- Footer -->
+<footer class="animated">
+    <p>Para qué nos sirve aprender este tema?</p>
+    <a href="#">En qué tipos de proyecto se aplica este tema?</a>
+    <a href="#">En la vida real, como podríamos aplicar este tema?</a>
+</footer>
+
+<!-- Scripts -->
+<script src="src/scripts.js"></script>
 </body>
 </html>
