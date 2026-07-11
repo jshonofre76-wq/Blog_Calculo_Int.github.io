@@ -189,26 +189,54 @@
         📖 Ver Formulario Trigonometrico
     </button>
 
-    <!-- VENTANA EMERGENTE (MODAL) PARA LAS FÓRMULAS -->
-    <div id="miModal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;">
-        <div style="background-color: #2c3e50; color: white; padding: 25px; border-radius: 8px; max-width: 500px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border-left: 5px solid #d35400; position: relative; font-family: 'Courier New', Courier, monospace;">
+    <!-- VENTANA EMERGENTE (MODAL) OPTIMIZADA EN DOS COLUMNAS -->
+    <div id="miModal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center;">
+        <div style="background-color: #2c3e50; color: white; padding: 25px; border-radius: 8px; max-width: 750px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border-left: 5px solid #d35400; position: relative; font-family: 'Courier New', Courier, monospace;">
+        
+            <!-- Botón de Cerrar (X) -->
             <span onclick="cerrarFormulario()" style="position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
-            <h3 style="color: #e67e22; margin-top: 0; border-bottom: 1px solid #4f5d73; padding-bottom: 5px;">Formularios e Identidades</h3>
         
-            <p><strong>[Integrales Inmediatas]</strong></p>
-            • ∫ sen(x) dx = -cos(x) + C<br>
-            • ∫ cos(x) dx = sen(x) + C<br>
-            • ∫ sec²(x) dx = tan(x) + C<br>
+            <h3 style="color: #e67e22; margin-top: 0; border-bottom: 1px solid #4f5d73; padding-bottom: 8px; text-align: center;">📖 TABLA DE INTEGRALES E IDENTIDADES</h3>
         
-            <p style="margin-top: 15px;"><strong>[Identidades de Ángulo Medio]</strong></p>
-            • sen²(x) = [1 - cos(2x)] / 2<br>
-            • cos²(x) = [1 + cos(2x)] / 2<br>
-        
-            <p style="margin-top: 15px;"><strong>[Identidades Pitagóricas]</strong></p>
-            • sen²(x) + cos²(x) = 1<br>
-            • tan²(x) + 1 = sec²(x)
+            <!-- Contenedor Flexible de Dos Columnas -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 13px; line-height: 1.6;">
+            
+                <!-- COLUMNA IZQUIERDA: INTEGRALES DE TU IMAGEN -->
+                <div>
+                    <p style="color: #f39c12; margin: 0 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Integrales Básicas y Exponenciales]</p>
+                    • ∫ k dx = kx + C<br>
+                    • ∫ xⁿ dx = [xⁿ⁺¹ / (n+1)] + C<br>
+                    • ∫ 1/x dx = ln|x| + C<br>
+                    • ∫ eˣ dx = eˣ + C<br>
+                    • ∫ aˣ dx = [aˣ / ln(a)] + C<br>
+                    • ∫ ln(x) dx = x ln(x) - x + C<br>
+                
+                    <p style="color: #f39c12; margin: 15px 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Cambio de Variable Típico]</p>
+                    • ∫ f(ax+b) dx = (1/a) ∫ f(u) du
+                </div>
+            
+                <!-- COLUMNA DERECHA: TRIGONOMÉTRICAS E IDENTIDADES -->
+                <div>
+                    <p style="color: #f39c12; margin: 0 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Integrales Trigonométricas]</p>
+                    • ∫ sin(x) dx = -cos(x) + C<br>
+                    • ∫ cos(x) dx = sin(x) + C<br>
+                    • ∫ tan(x) dx = ln|sec(x)| + C<br>
+                    • ∫ sec²(x) dx = tan(x) + C<br>
+                    • ∫ sec(x)tan(x) dx = sec(x) + C<br>
+                    • ∫ csc(x)cot(x) dx = -csc(x) + C<br>
+                
+                    <p style="color: #f39c12; margin: 15px 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Identidades Trigonométricas Clave]</p>
+                    • sin²(x) = [1 - cos(2x)] / 2<br>
+                    • cos²(x) = [1 + cos(2x)] / 2<br>
+                    • sin²(x) + cos²(x) = 1<br>
+                    • tan²(x) + 1 = sec²(x)
+                </div>
+            
+            </div>
         </div>
     </div>
+
+
 
     <!-- CONTENIDO PRINCIPAL DE LA PÁGINA -->
     <main style="margin-left: 60px; max-width: 1050px; width: calc(100% - 70px);">

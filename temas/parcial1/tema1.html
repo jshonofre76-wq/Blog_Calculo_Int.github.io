@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Copia este bloque directo dentro del body de tu archivo tema1.html -->
+    <main style="max-width: 1100px; width: 100%; margin: 0 auto; padding: 20px;">
+        <!-- Enlace de Navegación -->
+        <div class="navegacion-superior" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
+            <a href="../../index.html" class="volver-btn" style="text-decoration: none; color: #3498db; font-weight: bold;">← Volver al Inicio</a>
+        </div>
+
+        <h1>Tema: Integrales Indefinidas</h1>
+
+        <!-- FILA SUPERIOR: Teoría y Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    La <strong>integral indefinida</strong> es el conjunto de todas las funciones primitivas (antiderivadas) de una función dada. Su principal objetivo es realizar el proceso inverso a la derivación: recuperar una función original a partir de su razón de cambio.
+                </p>
+                <p>
+                    A diferencia de las integrales definidas, el resultado de una integral indefinida siempre será una función matemática acompañada por una <strong>constante de integración (+ C)</strong>, la cual representa a todas las posibles funciones desplazadas verticalmente que comparten la misma derivada.
+                </p>
+            </div>
+        
+            <div class="bloque" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="video-pequeno" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial Integrales Indefinidas"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicio y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra de Ejercicio por Pasos -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>Ejercicio Práctico Introductorio</h2>
+                <p><strong>Problema Común:</strong> Resolver la integral indefinida algebraica: ∫ (3x² - 5x + 2) dx</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarIndefPaso(1)">Paso 1: Separar Términos</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarIndefPaso(2)">Paso 2: Extraer Constantes</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarIndefPaso(3)">Paso 3: Aplicar Reglas</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarIndefPaso(4)">Paso 4: Resultado y +C</button>
+                </div>
+
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 200px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #3498db; line-height: 1.8;">
+                    <div id="indef-indicador">Haz clic en los botones para ver la resolución analítica paso a paso.</div>
+                
+                    <div id="indef-paso1" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 1] Separar la integral en términos individuales:</strong><br>
+                        Utilizando la propiedad de linealidad de las integrales, dividimos cada sumando con su propio diferencial:<br>
+                        ∫ 3x² dx - ∫ 5x dx + ∫ 2 dx
+                    </div>
+                
+                    <div id="indef-paso2" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 2] Extraer los coeficientes constantes:</strong><br>
+                        Sacamos los números enteros fuera de cada símbolo de integración para dejar las variables libres:<br>
+                        3 ∫ x² dx - 5 ∫ x dx + 2 ∫ dx
+                    </div>
+                
+                    <div id="indef-paso3" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 3] Aplicar la regla de la potencia:</strong><br>
+                        Usamos la regla de integración [∫ xⁿ dx = xⁿ⁺¹ / (n+1)] en cada variable:<br>
+                        • 3 · (x³ / 3)<br>
+                        • -5 · (x² / 2)<br>
+                        • 2 · (x)
+                    </div>
+                
+                    <div id="indef-paso4" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 4] Simplificar términos algebraicos y agregar +C:</strong><br>
+                        Cancelamos los coeficientes repetidos (3/3) y unimos la constante de integración obligatoria:<br>
+                        x³ - (5/2)x² + 2x + C<br><br>
+                        <strong>Resultado Final:</strong> x³ - 2.5x² + 2x + C
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Preguntas con posición inteligente flotante (Sticky) -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 20px; align-self: start;">
+                <h2>Preguntas de Aplicación</h2>
+                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
+            
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarIndefRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarIndefRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarIndefRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div style="background: #edf7fd; border-left: 4px solid #3498db; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <div id="indef-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- --- CONTROL JAVASCRIPT --- -->
+    <script>
+        function mostrarIndefPaso(numeroPaso) {
+            document.getElementById('indef-indicador').style.display = 'none';
+            document.getElementById('indef-paso' + numeroPaso).style.display = 'block';
+        }
+
+        function mostrarIndefRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('indef-texto-respuesta');
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos de Modelado de Costos y Finanzas:</strong> Es fundamental para modelar curvas generales de costos marginales o ingresos proyectados en empresas. Permite hallar las funciones totales antes de establecer presupuestos fijos.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Si conoces la tasa continua con la que el agua llena un tanque por minuto, al aplicar una integral indefinida obtienes la fórmula general que predice el volumen de agua acumulado en cualquier minuto del día.";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Para integrales algebraicas pesadas se utiliza la barra matemática de <strong>WolframAlpha</strong>, softwares simbólicos de código abierto como <strong>Maxima</strong>, o la calculadora gráfica de <strong>GeoGebra</strong>.";
+            }
+        }
+    </script>
+
+</body>
+</html>
