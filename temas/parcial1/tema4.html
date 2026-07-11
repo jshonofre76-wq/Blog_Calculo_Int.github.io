@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Copia este bloque directo dentro del body de tu archivo tema4.html -->
+    <main style="max-width: 1100px; width: 100%; margin: 0 auto; padding: 20px;">
+        <!-- Enlace de Navegación -->
+        <div class="navegacion-superior" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
+            <a href="../../index.html" class="volver-btn" style="text-decoration: none; color: #3498db; font-weight: bold;">← Volver al Inicio</a>
+        </div>
+
+        <h1>Tema: Integración por Sustitución (Cambio de Variable)</h1>
+
+        <!-- FILA SUPERIOR: Teoría al lado del Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    El método de <strong>integración por sustitución</strong> es el equivalente de la regla de la cadena para la derivación. Su objetivo es transformar una integral compleja en una forma estándar e inmediata mediante la introducción de una nueva variable, generalmente llamada <em>u</em>.
+                </p>
+                <p>
+                    Se aplica cuando en el integrando se identifica una función compuesta donde, además, se encuentra presente de manera multiplicativa la derivada (o una parte de ella) de la función interna.
+                </p>
+            </div>
+        
+            <div class="bloque" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="video-pequeno" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial Integrales por Sustitución"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 6px;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicio y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra de Ejercicio por Pasos -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>Ejercicio Práctico Demostrativo</h2>
+                <p><strong>Problema Modelo:</strong> Resolver la integral indefinida: ∫ x √(x² + 1) dx</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarSustPaso(1)">Paso 1: Elegir U</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarSustPaso(2)">Paso 2: Diferencial DU</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarSustPaso(3)">Paso 3: Sustituir Expresión</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarSustPaso(4)">Paso 4: Integrar en U</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarSustPaso(5)">Paso 5: Retornar a X</button>
+                </div>
+
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 200px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #3498db; line-height: 1.8;">
+                    <div id="sust-indicador">Haz clic en los botones para ver la resolución analítica paso a paso.</div>
+                
+                    <div id="sust-paso1" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 1] Elegir la variable u conveniente:</strong><br>
+                        Identificamos el término algebraico más complejo o el que esté "atrapado" dentro de una raíz o potencia:<br>
+                        u = x² + 1
+                    </div>
+                
+                    <div id="sust-paso2" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 2] Calcular el diferencial du despejando dx:</strong><br>
+                        Derivamos u respecto a x algebraicamente:<br>
+                        du = 2x dx &nbsp;→&nbsp; dx = du / 2x
+                    </div>
+                
+                    <div id="sust-paso3" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 3] Sustituir los nuevos valores en la integral original:</strong><br>
+                        Reemplazamos (x²+1) por u, y dx por (du / 2x):<br>
+                        ∫ x √u (du / 2x)<br>
+                        Cancelamos la x de arriba con la x de abajo y extraemos la constante un medio (1/2):<br>
+                        = (1/2) ∫ √u du &nbsp;→&nbsp; (1/2) ∫ u^(1/2) du
+                    </div>
+                
+                    <div id="sust-paso4" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 4] Integrar la variable u usando la regla de potencias:</strong><br>
+                        Sumamos la unidad al exponente racional [1/2 + 1 = 3/2]:<br>
+                        = (1/2) · [ u^(3/2) / (3/2) ] + C<br>
+                        Aplicamos extremos con extremos para simplificar las fracciones [1/2 · 2/3 = 1/3]:<br>
+                        = (1/3) u^(3/2) + C
+                    </div>
+                
+                    <div id="sust-paso5" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 5] Regresar a la variable original x y concluir:</strong><br>
+                        Reemplazamos u por el polinomio inicial (x² + 1):<br>
+                        <br>
+                        <strong>Resultado Final:</strong> (1/3)(x² + 1)^(3/2) + C &nbsp;&nbsp;[o simplemente: ⅓√(x²+1)³ + C]
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Preguntas con posición inteligente flotante (Sticky) -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 20px; align-self: start;">
+                <h2>Preguntas de Aplicación</h2>
+                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
+            
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarSustRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarSustRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarSustRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div style="background: #edf7fd; border-left: 4px solid #3498db; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <div id="sust-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- --- CONTROL JAVASCRIPT --- -->
+    <script>
+        function mostrarSustPaso(numeroPaso) {
+            document.getElementById('sust-indicador').style.display = 'none';
+            document.getElementById('sust-paso' + numeroPaso).style.display = 'block';
+        }
+
+        function mostrarSustRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('sust-texto-respuesta');
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos de Ingeniería Térmica y Termodinámica:</strong> Se aplica para modelar cambios continuos en la presión y volumen de gases ideales encerrados dentro de pistones industriales mecánicos.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Es crucial en los estudios epidemiológicos de la salud pública para calcular las tasas aceleradas de contagios de un virus en poblaciones densas a lo largo de las semanas.";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Entornos de cómputo matemático avanzado como <strong>WolframAlpha</strong>, calculadoras científicas CAS o la plataforma <strong>Symbolab</strong> ejecutan el cambio de variables y muestran los pasos algebraicos de manera instantánea.";
+            }
+        }
+    </script>
+
+</body>
+</html>
