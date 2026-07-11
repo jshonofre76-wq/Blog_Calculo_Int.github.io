@@ -265,9 +265,21 @@
                 <p id="enunciado-partes"><strong>Problema:</strong> Resolver la integral indefinida: ∫ (2x² + 3x - 5) sin(x) dx</p>
                 <p style="font-size: 14px; background: #f8f9fa; padding: 8px; border-left: 3px solid #27ae60;"><strong>Fórmula Base:</strong> ∫ u dv = u·v - ∫ v du</p>
             
-                <!-- Contenedor dinámico de botones de pasos -->
+                                <!-- Contenedor dinámico de botones de pasos -->
                 <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
                     <!-- El JavaScript inyectará automáticamente los botones correctos aquí -->
+                </div>
+
+                <!-- ESTO ERA LO QUE FALTABA: El recuadro negro de la pizarra -->
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 220px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #27ae60; line-height: 1.8;">
+                    <div id="partes-indicador">Haz clic en los pasos de arriba para desplegar el desarrollo analítico paso a paso.</div>
+                    
+                    <!-- Los pasos vacíos que el JavaScript irá llenando -->
+                    <div id="partes-paso1" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="partes-paso2" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="partes-paso3" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="partes-paso4" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="partes-paso5" style="display: none; margin-bottom: 15px;"></div>
                 </div>
 
             </div>
@@ -386,6 +398,6 @@
         }
 
     </script>
-    
+
 </body>
 </html>
