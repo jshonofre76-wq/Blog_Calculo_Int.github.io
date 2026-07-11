@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Copia este bloque directo dentro del body de tu archivo tema5.html -->
+    <main>
+        <div class="navegacion-superior" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
+            <a href="../../index.html" class="volver-btn" style="text-decoration: none; color: #3498db; font-weight: bold;">← Volver al Inicio</a>
+        </div>
+
+        <h1>Tema: Aplicaciones en Cinemática</h1>
+
+        <!-- FILA SUPERIOR: Teoría y Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    La cinemática estudia el movimiento de los cuerpos sin considerar las fuerzas que lo producen. Mediante el cálculo integral, podemos realizar el proceso inverso a la derivación: si conocemos la aceleración de un objeto, podemos integrar para conocer su velocidad, y volver a integrar para determinar su posición exacta en cualquier instante de tiempo.
+                </p>
+            </div>
+        
+            <div class="bloque" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="video-pequeno" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial Cinemática"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicio y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra de Ejercicio por Pasos -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>Problema de Aplicación Física</h2>
+                <p><strong>Enunciado:</strong> Una partícula se mueve con una aceleración a = 18 - 6t². Parte de una posición inicial x₀ = 100m en t = 0 con una velocidad inicial v₀ = 0. Determine el tiempo t cuando v = 0, y calcule la posición y velocidad en t = 4s.</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarCinePaso(1)">Paso 1: Ecuación de v(t)</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarCinePaso(2)">Paso 2: Calcular t para v=0</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarCinePaso(3)">Paso 3: Ecuación de x(t)</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarCinePaso(4)">Paso 4: Posición en t=4s</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarCinePaso(5)">Paso 5: Velocidad en t=4s</button>
+                </div>
+
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 220px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #3498db; line-height: 1.8;">
+                    <div id="cine-indicador">Haz clic en los botones para resolver las ecuaciones físicas paso a paso.</div>
+                
+                    <div id="cine-paso1" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 1] De Aceleración a Velocidad (Integración):</strong><br>
+                        Sabemos que a = dv/dt &nbsp;→ dv = (18 - 6t²)dt<br>
+                        ∫ dv = ∫ (18 - 6t²) dt<br>
+                        v(t) = 18t - 2t³ + C<br>
+                        Aplicando condición inicial v(0) = 0 obtenemos <strong>C = 0</strong>.<br>
+                        <strong>Ecuación:</strong> v(t) = 18t - 2t³
+                    </div>
+                
+                    <div id="cine-paso2" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 2] Encontrar cuándo la velocidad vale cero:</strong><br>
+                        Igualamos a cero: 18t - 2t³ = 0<br>
+                        Factorizamos por término común: 2t(9 - t²) = 0<br>
+                        • Raíz 1: 2t = 0 → t = 0 s (Instante de partida)<br>
+                        • Raíz 2: 9 - t² = 0 → t² = 9 → <strong>t = 3 s</strong><br>
+                        La velocidad vuelve a ser cero a los 3 segundos.
+                    </div>
+                
+                    <div id="cine-paso3" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 3] De Velocidad a Posición (Segunda Integración):</strong><br>
+                        Sabemos que v = dx/dt &nbsp;→ dx = (18t - 2t³)dt<br>
+                        ∫ dx = ∫ (18t - 2t³) dt<br>
+                        x(t) = 9t² - (t⁴ / 2) + C<br>
+                        Como x(0) = 100m (posición inicial), entonces <strong>C = 100</strong>.<br>
+                        <strong>Ecuación final:</strong> x(t) = 100 + 9t² - (t⁴ / 2)
+                    </div>
+                
+                    <div id="cine-paso4" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 4] Evaluar la posición en t = 4 segundos:</strong><br>
+                        Sustituimos t = 4 en x(t):<br>
+                        x(4) = 100 + 9(4)² - (4⁴ / 2)<br>
+                        x(4) = 100 + 9(16) - (256 / 2)<br>
+                        x(4) = 100 + 144 - 128<br>
+                        <strong>Resultado Posición:</strong> x(4) = 116 metros
+                    </div>
+                
+                    <div id="cine-paso5" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 5] Evaluar la velocidad en t = 4 segundos:</strong><br>
+                        Sustituimos t = 4 en v(t):<br>
+                        v(4) = 18(4) - 2(4)³<br>
+                        v(4) = 72 - 2(64)<br>
+                        v(4) = 72 - 128<br>
+                        <strong>Resultado Velocidad:</strong> v(4) = -56 m/s &nbsp;[Moverse en sentido contrario]
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Preguntas con posición inteligente flotante (Sticky) -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 20px; align-self: start;">
+                <h2>Preguntas de Aplicación</h2>
+                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
+            
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarCineRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarCineRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarCineRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div style="background: #edf7fd; border-left: 4px solid #3498db; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <div id="cine-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- --- CONTROL JAVASCRIPT --- -->
+    <script>
+        function mostrarCinePaso(numeroPaso) {
+            document.getElementById('cine-indicador').style.display = 'none';
+            document.getElementById('cine-paso' + numeroPaso).style.display = 'block';
+        }
+
+        function mostrarCineRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('cine-texto-respuesta');
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos Aeroespaciales y Automotrices:</strong> Se aplica en el diseño de sistemas de telemetría para cohetes de SpaceX o vehículos autónomos, estimando la posición exacta de frenado o el gasto de combustible a partir de sensores de aceleración continua.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Es la base matemática de los acelerómetros internos de tu teléfono móvil, permitiendo calcular cuántos pasos das al día o registrar la velocidad de colisión en bolsas de aire (Airbags).";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "Herramientas tecnológicas: Se utilizan simuladores físicos como Simulink, modelados cinemáticos interactivos en GeoGebra y scripts computacionales en Python (librerías NumPy y VPython).";
+            }
+        }
+    </script>
+
+</body>
+</html>
