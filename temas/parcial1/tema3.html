@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- BOTÓN FLOTANTE: Regla ILATE en el extremo izquierdo -->
+    <button onclick="abrirIlate()" style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); background-color: #27ae60; color: white; border: none; padding: 15px 10px; cursor: pointer; font-weight: bold; border-radius: 0 8px 8px 0; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); z-index: 1000; writing-mode: vertical-rl; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">
+        📐 Ver Regla ILATE (Prioridad de U)
+    </button>
+
+    <!-- VENTANA EMERGENTE (MODAL) PARA EXPLICAR ILATE -->
+    <div id="modalIlate" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); align-items: center; justify-content: center;">
+        <div style="background-color: #2c3e50; color: white; padding: 25px; border-radius: 8px; max-width: 550px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border-left: 5px solid #27ae60; position: relative; font-family: 'Courier New', Courier, monospace; line-height: 1.6;">
+        
+            <span onclick="cerrarIlate()" style="position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+        
+            <h3 style="color: #2ecc71; margin-top: 0; border-bottom: 1px solid #4f5d73; padding-bottom: 8px; text-align: center;">🎯 CRITERIO DE PRIORIDAD: REGLA ILATE</h3>
+        
+            <p style="font-size: 14px; text-align: justify;">
+                Para integrar por partes usamos la fórmula: <strong>∫ u dv = u·v - ∫ v du</strong>. <br>
+                La palabra <strong>ILATE</strong> nos indica el orden estricto de arriba hacia abajo para elegir cuál función será la variable <strong>u</strong>. La primera que aparezca en la lista tiene la prioridad:
+            </p>
+
+            <div style="background: #1a252f; padding: 15px; border-radius: 6px; font-size: 13px; margin: 15px 0;">
+                <strong style="color: #e74c3c;">▲ PRIORIDAD ALTA (Se elige primero)</strong><br>
+                <strong>I</strong> - Inversas Trigonométricas &nbsp;[ sin⁻¹(x), cos⁻¹(x) ]<br>
+                <strong>L</strong> - Logarítmicas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ ln(x), log(x) ]<br>
+                <strong>A</strong> - Algebraicas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ x³, 3x, 5 ]<br>
+                <strong>T</strong> - Trigonométricas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ sin(x), cos(x) ]<br>
+                <strong>E</strong> - Exponenciales &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[ eˣ, 2ˣ ]<br>
+                <strong style="color: #3498db;">▼ PRIORIDAD BAJA (Se deja para el dv)</strong>
+            </div>
+
+            <p style="font-size: 13px; color: #bdc3c7; text-align: justify;">
+                <strong>¿Por qué se hace esto?</strong> Elegimos como <strong>u</strong> la función que sea más fácil de simplificar al derivarla, mientras que las funciones de abajo (como las exponenciales) no cambian su complejidad al integrarse, por lo que se asignan directamente al diferencial <strong>dv</strong>.
+            </p>
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL -->
+    <main style="margin-left: 60px; max-width: 1050px; width: calc(100% - 70px); margin: 0 auto; padding: 20px;">
+        <div class="navegacion-superior">
+            <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
+        </div>
+
+        <h1>Tema: Integración por Partes (Integrales Cíclicas)</h1>
+
+        <!-- FILA SUPERIOR: Teoría al lado del Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    El método de <strong>integración por partes</strong> se deriva directamente de la regla del producto para la derivación. Se utiliza cuando el integrando está compuesto por el producto de dos funciones algebraicas o trascendentes de distinta naturaleza.
+                </p>
+                <p>
+                    En casos especiales donde se multiplican funciones exponenciales y trigonométricas, el proceso genera un bucle o ciclo algebraico. Lejos de ser un error, esto nos permite despejar la integral original como si fuese una incógnita matemática tradicional.
+                </p>
+            </div>
+        
+            <div class="bloque" style="padding: 15px;">
+                <div class="video-pequeno">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial Integración por Partes"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicio y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra de Ejercicio Acumulativa -->
+            <div class="bloque">
+                <h2>Ejercicio Práctico Cíclico</h2>
+                <p><strong>Problema:</strong> Resolver la integral indefinida: ∫ eˣ cos(x) dx</p>
+                <p style="font-size: 14px; background: #f8f9fa; padding: 8px; border-left: 3px solid #27ae60;"><strong>Fórmula Base:</strong> ∫ u dv = u·v - ∫ v du</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" onclick="mostrarPartesPaso(1)">Paso 1: Primera Sustitución</button>
+                    <button class="btn-paso" onclick="mostrarPartesPaso(2)">Paso 2: Primera Integración</button>
+                    <button class="btn-paso" onclick="mostrarPartesPaso(3)">Paso 3: Segunda Integración</button>
+                    <button class="btn-paso" onclick="mostrarPartesPaso(4)">Paso 4: Identificar el Ciclo</button>
+                    <button class="btn-paso" onclick="mostrarPartesPaso(5)">Paso 5: Despeje y Solución</button>
+                </div>
+
+                <div class="pizarra-ejercicio">
+                    <div id="partes-indicador">Haz clic en los pasos de arriba para desplegar el desarrollo analítico paso a paso.</div>
+                
+                    <div id="partes-paso1" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 1] Seleccionar variables usando ILATE:</strong><br>
+                        Tenemos una función Trigonométrica [cos(x)] y una Exponencial [eˣ]. Por orden de prioridad, la trigonométrica va primero:<br>
+                        • u = cos(x) &nbsp;&nbsp;→ &nbsp;du = -sin(x) dx<br>
+                        • dv = eˣ dx &nbsp;→ &nbsp;v = eˣ
+                    </div>
+                
+                    <div id="partes-paso2" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 2] Aplicar la fórmula por primera vez:</strong><br>
+                        Sustituimos la estructura en la ecuación original (u·v - ∫ v du):<br>
+                        ∫ eˣ cos(x) dx = cos(x)·eˣ - ∫ e * (-sin(x)) dx<br>
+                        ∫ eˣ cos(x) dx = eˣ cos(x) + <strong>∫ eˣ sin(x) dx</strong>
+                    </div>
+                
+                    <div id="partes-paso3" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 3] Aplicar el método a la nueva integral interna:</strong><br>
+                        Volvemos a integrar por partes la expresión ∫ eˣ sin(x) dx manteniendo el mismo orden de prioridad:<br>
+                        • u = sin(x) &nbsp;&nbsp;→ &nbsp;du = cos(x) dx<br>
+                        • dv = eˣ dx &nbsp;→ &nbsp;v = eˣ<br>
+                        Desarrollo interno: [ sin(x)·eˣ - ∫ eˣ cos(x) dx ]
+                    </div>
+                
+                    <div id="partes-paso4" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 4] Unificar las dos etapas e identificar la repetición:</strong><br>
+                        Reunimos todo el camino algebraico en una sola ecuación lineal:<br>
+                        ∫ eˣ cos(x) dx = eˣ cos(x) + eˣ sin(x) - <strong>∫ eˣ cos(x) dx</strong><br>
+                        *¡Fíjate bien! La integral que resta al final es exactamente igual a nuestra integral original del enunciado. El ciclo se ha cerrado.
+                    </div>
+                
+                    <div id="partes-paso5" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 5] Despejar algebraicamente la integral y añadir +C:</strong><br>
+                        Pasamos la integral que está restando en el miembro derecho a sumar al miembro izquierdo:<br>
+                        2 ∫ eˣ cos(x) dx = eˣ cos(x) + eˣ sin(x)<br>
+                        Pasamos el número 2 a dividir al otro lado y factorizamos eˣ:<br>
+                        <br>
+                        <strong>Resultado Final:</strong> [ eˣ (cos(x) + sin(x)) / 2 ] + C
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Preguntas con posición inteligente flotante (Sticky) -->
+            <div class="bloque" style="position: sticky; top: 20px; align-self: start;">
+                <h2>Preguntas de Aplicación</h2>
+                <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
+            
+                <button class="btn-pregunta" onclick="mostrarPartesRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarPartesRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarPartesRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div class="contenedor-respuesta">
+                    <div id="partes-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                                    <div id="partes-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div> <!-- Cierra contenedor-respuesta -->
+            </div> <!-- Cierra el bloque derecho de preguntas -->
+
+        </div> <!-- Cierra fila-inferior -->
+    </main>
+
+    <!-- --- CONTROL JAVASCRIPT CORREGIDO --- -->
+    <script>
+        function abrirIlate() {
+            document.getElementById('modalIlate').style.display = 'flex';
+        }   
+        function cerrarIlate() {
+            document.getElementById('modalIlate').style.display = 'none';
+        }
+
+        function mostrarPartesPaso(numeroPaso) {
+            document.getElementById('partes-indicador').style.display = 'none';
+            document.getElementById('partes-paso' + numeroPaso).style.display = 'block';
+        }
+
+        function mostrarPartesRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('partes-texto-respuesta');
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos de Ingeniería Eléctrica y Señales:</strong> Se aplica de forma masiva en el Análisis de Fourier para descomponer señales complejas y ondas eléctricas de corriente alterna en sus componentes armónicos básicos.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Se utiliza para calcular los patrones de amortiguamiento en puentes o edificios sometidos a terremotos, donde las ondas de choque (senos y cosenos) van perdiendo fuerza de forma exponencial a lo largo de las horas.";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Para no perderse en los signos de los ciclos algebraicos se recurre al comando 'int' en software matemático como <strong>MATLAB</strong> o la plataforma escolar interactiva <strong>Symbolab</strong>.";
+            }
+        }
+    </script>
+</body>
+</html>
