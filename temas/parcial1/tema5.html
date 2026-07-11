@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Botón Flotante en el extremo izquierdo de la pantalla -->
+    <button onclick="abrirFormulario()" style="position: fixed; left: 0; top: 50%; transform: translateY(-50%); background-color: #d35400; color: white; border: none; padding: 15px 10px; cursor: pointer; font-weight: bold; border-radius: 0 8px 8px 0; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); z-index: 1000; writing-mode: vertical-rl; text-transform: uppercase; font-size: 12px; letter-spacing: 1px;">
+        📖 Ver Formulario Trigonometrico
+    </button>
+
+    <!-- VENTANA EMERGENTE (MODAL) PARA LAS FÓRMULAS -->
+    <div id="miModal" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.6); align-items: center; justify-content: center;">
+        <div style="background-color: #2c3e50; color: white; padding: 25px; border-radius: 8px; max-width: 500px; width: 90%; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border-left: 5px solid #d35400; position: relative; font-family: 'Courier New', Courier, monospace;">
+            <span onclick="cerrarFormulario()" style="position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer;">&times;</span>
+            <h3 style="color: #e67e22; margin-top: 0; border-bottom: 1px solid #4f5d73; padding-bottom: 5px;">Formularios e Identidades</h3>
+        
+            <p><strong>[Integrales Inmediatas]</strong></p>
+            • ∫ sen(x) dx = -cos(x) + C<br>
+            • ∫ cos(x) dx = sen(x) + C<br>
+            • ∫ sec²(x) dx = tan(x) + C<br>
+        
+            <p style="margin-top: 15px;"><strong>[Identidades de Ángulo Medio]</strong></p>
+            • sen²(x) = [1 - cos(2x)] / 2<br>
+            • cos²(x) = [1 + cos(2x)] / 2<br>
+        
+            <p style="margin-top: 15px;"><strong>[Identidades Pitagóricas]</strong></p>
+            • sen²(x) + cos²(x) = 1<br>
+            • tan²(x) + 1 = sec²(x)
+        </div>
+    </div>
+
+    <!-- CONTENIDO PRINCIPAL DE LA PÁGINA -->
+    <main style="margin-left: 60px; max-width: 1050px; width: calc(100% - 70px);">
+        <div class="navegacion-superior">
+            <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
+        </div>
+
+        <h1>Tema: Integrales de Funciones Trigonométricas</h1>
+
+        <!-- FILA SUPERIOR: Teoría y Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque">
+                <h2>¿Para qué sirve este tema?</h2>
+                <p>
+                    Permite resolver integrales que involucran productos y potencias de funciones trigonométricas (seno, coseno, tangente, secante). Estas expresiones aparecen de forma constante al modelar fenómenos periódicos u ondas en ingeniería.
+                </p>
+                <p>El éxito de este método radica en clasificar correctamente la integral en uno de sus 4 tipos para aplicar la sustitución o identidad trigonométrica adecuada.</p>
+            </div>
+        
+            <div class="bloque" style="padding: 15px;">
+                <div class="video-pequeno">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video tutorial Trigonometricas"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- SELECTOR DE TIPOS (Los 4 subtemas) -->
+        <div style="margin-bottom: 20px; text-align: center;">
+            <p style="font-weight: bold; margin-bottom: 8px;">Selecciona el Tipo de Integral Trigonométrica:</p>
+            <button class="btn-paso" style="background-color: #34495e;" onclick="cambiarTipoTrig('tipo1')">Tipo 1: Potencias Impares de Sen/Cos</button>
+            <button class="btn-paso" style="background-color: #27ae60;" onclick="cambiarTipoTrig('tipo2')">Tipo 2: Potencias Pares de Sen/Cos</button>
+            <button class="btn-paso" style="background-color: #2980b9;" onclick="cambiarTipoTrig('tipo3')">Tipo 3: Potencias de Tan/Sec</button>
+            <button class="btn-paso" style="background-color: #8e44ad;" onclick="cambiarTipoTrig('tipo4')">Tipo 4: Productos con Ángulos Distintos</button>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicios y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra de Ejercicio Dinámica -->
+            <div class="bloque">
+                <h2 id="titulo-trig">Tipo 1: Potencias Impares de Seno o Coseno</h2>
+                <p id="enunciado-trig">Cargando enunciado...</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" onclick="gestionarPasosTrig(1)">Paso 1</button>
+                    <button class="btn-paso" onclick="gestionarPasosTrig(2)">Paso 2</button>
+                    <button class="btn-paso" onclick="gestionarPasosTrig(3)">Paso 3</button>
+                    <button class="btn-paso" onclick="gestionarPasosTrig(4)">Paso 4</button>
+                </div>
+
+                <div class="pizarra-ejercicio">
+                    <div id="t-indicador">Haz clic en los pasos numéricos superiores para ver la resolución analítica.</div>
+                    <div id="t-paso1" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="t-paso2" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="t-paso3" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="t-paso4" style="display: none; margin-bottom: 15px;"></div>
+                </div>
+            </div>
+
+            <!-- Preguntas de Aplicación Flotantes -->
+            <div class="bloque" style="position: sticky; top: 20px; align-self: start;">
+                <h2>Preguntas de Aplicación</h2>
+                <button class="btn-pregunta" onclick="mostrarTrigRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarTrigRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarTrigRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div class="contenedor-respuesta">
+                    <div id="t-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- --- CONTROL JAVASCRIPT --- -->
+    <script>
+        // Funciones para manejar el Pop-up del formulario
+        function abrirFormulario() {
+            document.getElementById('miModal').style.display = 'flex';
+        }
+        function cerrarFormulario() {
+            document.getElementById('miModal').style.display = 'none';
+        }
+
+        // Estructura base para el cambio de subtemas
+        // Base de datos integrada con tus 4 ejercicios detallados
+        let tipoActual = 'tipo1';
+        let pasoMaximoPorTipo = { tipo1: 6, tipo2: 5, tipo3: 6, tipo4: 5 };
+
+        const datosEjercicios = {
+            tipo1: {
+                titulo: "Tipo 1: Potencias Impares de Seno o Coseno",
+                enunciado: "<strong>Problema:</strong> Calcular la integral indefinida: ∫ sin³(x) dx",
+                paso1: "<strong>[PASO 1] Separar un factor lineal:</strong><br>Descomponemos la potencia impar separando un seno con exponente 1 para usarlo como el futuro diferencial:<br>∫ sin²(x) · sin(x) dx",
+                paso2: "<strong>[PASO 2] Aplicar identidad pitagórica:</strong><br>Usamos la fórmula del formulario [sin²(x) = 1 - cos²(x)] para transformar el término par:<br>∫ (1 - cos²(x)) sin(x) dx",
+                paso3: "<strong>[PASO 3] Cambio de variable (u-substitution):</strong><br>Definimos u como la función base del término par:<br>u = cos(x)<br>du = -sin(x) dx &nbsp;→&nbsp; -du = sin(x) dx",
+                paso4: "<strong>[PASO 4] Sustituir algebraicamente:</strong><br>Introducimos los nuevos términos u y -du dentro de nuestra integral:<br>∫ (1 - u²)(-du) = ∫ (u² - 1) du",
+                paso5: "<strong>[PASO 5] Integrar término a término:</strong><br>Aplicamos la regla clásica de potencias para polinomios algebraicos:<br>(u³ / 3) - u + C",
+                paso6: "<strong>[PASO 6] Regresar a la variable original (x):</strong><br>Reemplazamos de vuelta la variable u por su equivalencia cos(x):<br><br><strong>Resultado Final:</strong> [ cos³(x) / 3 ] - cos(x) + C"
+            },
+            tipo2: {
+                titulo: "Tipo 2: Potencias Pares de Seno o Coseno",
+                enunciado: "<strong>Problema:</strong> Calcular la integral indefinida: ∫ cos²(x) dx",
+                paso1: "<strong>[PASO 1] Aplicar identidad de ángulo medio:</strong><br>Reducimos la potencia par transformándola mediante la identidad:<br>cos²(x) = [1 + cos(2x)] / 2 &nbsp;→&nbsp; ∫ [ (1 + cos(2x)) / 2 ] dx",
+                paso2: "<strong>[PASO 2] Separar la integral en dos fracciones:</strong><br>Extraemos la constante un medio (1/2) y dividimos los sumandos:<br>(1/2) ∫ 1 dx + (1/2) ∫ cos(2x) dx",
+                paso3: "<strong>[PASO 3] Resolver la primera integral:</strong><br>La integral directa de la constante diferencial dx es simplemente x:<br>(1/2)x",
+                paso4: "<strong>[PASO 4] Resolver la segunda integral:</strong><br>Usamos la fórmula directa ∫ cos(ax) dx = [sin(ax) / a] donde a = 2:<br>(1/2) · [ sin(2x) / 2 ] = (1/4) sin(2x)",
+                paso5: "<strong>[PASO 5] Agrupar resultados y añadir constante:</strong><br>Unimos de forma lineal ambas partes del procedimiento desarrollado:<br><br><strong>Resultado Final:</strong> (1/2)x + (1/4)sin(2x) + C"
+            },
+            tipo3: {
+                titulo: "Tipo 3: Potencias de Tangente y Secante",
+                enunciado: "<strong>Problema:</strong> Calcular la integral indefinida: ∫ tan²(x) sec⁴(x) dx",
+                paso1: "<strong>[PASO 1] Separar un factor secante cuadrado:</strong><br>Reservamos un término sec²(x) que funcionará estrictamente como el du del cambio de variable:<br>∫ tan²(x) sec²(x) · sec²(x) dx",
+                paso2: "<strong>[PASO 2] Aplicar identidad pitagórica:</strong><br>Convertimos el factor sec²(x) restante a términos de tangente usando [sec²(x) = 1 + tan²(x)]:<br>∫ tan²(x) (1 + tan²(x)) sec²(x) dx",
+                paso3: "<strong>[PASO 3] Cambio de variable:</strong><br>Asignamos la variable u a la función tangente y calculamos su derivada:<br>u = tan(x) &nbsp;→&nbsp; du = sec²(x) dx",
+                paso4: "<strong>[PASO 4] Sustituir y expandir el polinomio:</strong><br>Reemplazamos los términos y multiplicamos algebraicamente distributiva en la integral:<br>∫ u²(1 + u²) du = ∫ (u² + u⁴) du",
+                paso5: "<strong>[PASO 5] Integrar el polinomio:</strong><br>Resolvemos aplicando sumas a los exponentes según las reglas básicas:<br>(u³ / 3) + (u⁵ / 5) + C",
+                paso6: "<strong>[PASO 6] Regresar a la variable original (x):</strong><br>Reemplazamos la variable u por su valor real tan(x):<br><br><strong>Resultado Final:</strong> [ tan³(x) / 3 ] + [ tan⁵(x) / 5 ] + C"
+            },
+            tipo4: {
+                titulo: "Tipo 4: Productos con Ángulos Distintos / Sustitución Lineal",
+                enunciado: "<strong>Problema:</strong> Calcular la integral trigonométrica: ∫ sin(5x) dx",
+                paso1: "<strong>[PASO 1] Cambio de variable del argumento:</strong><br>Elegimos el argumento del seno (el ángulo compuesto) como nuestra variable u:<br>u = 5x",
+                paso2: "<strong>[PASO 2] Calcular el diferencial du:</strong><br>Derivamos u respecto a x para hallar la equivalencia del dx original:<br>du = 5 dx &nbsp;→&nbsp; dx = du / 5",
+                paso3: "<strong>[PASO 3] Sustituir en la integral original:</strong><br>Reemplazamos los términos originales en función del parámetro u:<br>∫ sin(u) · (du / 5) = (1/5) ∫ sin(u) du",
+                paso4: "<strong>[PASO 4] Integrar de forma directa:</strong><br>Aplicamos la fórmula fundamental de integración inmediata [∫ sin(u) du = -cos(u)]:<br>(1/5) · (-cos(u)) + C = -(1/5)cos(u) + C",
+                paso5: "<strong>[PASO 5] Regresar a la variable x:</strong><br>Reemplazamos la variable u por el ángulo original 5x:<br><br><strong>Resultado Final:</strong> -(1/5)cos(5x) + C"
+            }
+        };
+
+        // Cambia el subtema trigonométrico al pulsar los botones de colores superiores
+        function cambiarTipoTrig(idTipo) {
+            tipoActual = idTipo;
+            document.getElementById('titulo-trig').innerText = datosEjercicios[idTipo].titulo;
+            document.getElementById('enunciado-trig').innerHTML = datosEjercicios[idTipo].enunciado;
+        
+            // Resetear la pizarra
+            document.getElementById('t-indicador').style.display = 'block';
+        
+            // Limpiar dinámicamente los 6 contenedores posibles de pasos
+            for (let i = 1; i <= 6; i++) {
+                let el = document.getElementById('t-paso' + i);
+                if(el) {
+                    el.style.display = 'none';
+                    el.innerHTML = '';
+                }
+            }
+        
+            // Ajustar visualmente cuántos botones de pasos se necesitan para este tipo en particular
+            actualizarVisibilidadBotones(pasoMaximoPorTipo[idTipo]);
+        }
+
+        // Genera la cantidad exacta de botones según los pasos que requiere cada tipo matemático
+        function actualizarVisibilidadBotones(maxPasos) {
+            const contenedorBotones = document.querySelector('.controles-pasos');
+            contenedorBotones.innerHTML = '';
+            for (let i = 1; i <= maxPasos; i++) {
+                contenedorBotones.innerHTML += `<button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="gestionarPasosTrig(${i})">Paso ${i}</button>`;
+            }
+        }
+
+        // Revela los pasos acumulativamente en la pizarra negra
+        function gestionarPasosTrig(numeroPaso) {
+            document.getElementById('t-indicador').style.display = 'none';
+        
+            // Crear el elemento dinámicamente si no existiera en el HTML estructurado
+            let contenedorPaso = document.getElementById('t-paso' + numeroPaso);
+            if (!contenedorPaso) {
+                const pizarra = document.querySelector('.pizarra-ejercicio');
+                contenedorPaso = document.createElement('div');
+                contenedorPaso.id = 't-paso' + numeroPaso;
+                contenedorPaso.style.marginBottom = '15px';
+                pizarra.appendChild(contenedorPaso);
+            }
+        
+            contenedorPaso.innerHTML = datosEjercicios[tipoActual]['paso' + numeroPaso];
+            contenedorPaso.style.display = 'block';
+        }
+
+        // Respuestas dinámicas de aplicación para el panel derecho
+        function mostrarTrigRespuesta(id) {
+            const txt = document.getElementById('t-texto-respuesta');
+            if (id === 1) {
+                txt.innerHTML = "<strong>Proyectos de Telecomunicaciones y Audio:</strong> Se aplica para calcular la energía de ondas electromagnéticas o de sonido sinusoidales, permitiendo el filtrado de ruidos en señales de radio y telefonía móvil.";
+            } else if (id === 2) {
+                txt.innerHTML = "<strong>Aplicación en la vida real:</strong> Se utiliza en ingeniería mecánica para analizar la fatiga en componentes sometidos a cargas cíclicas repetitivas, como pistones o cigüeñales de motores.";
+            } else if (id === 3) {
+                txt.innerHTML = "<strong>Herramientas tecnológicas:</strong> Plataformas como <strong>WolframAlpha</strong> o paquetes simbólicos como <strong>SymPy en Python</strong> resuelven estas reducciones trigonométricas complejas en milisegundos.";
+            }
+        }
+
+        // Arrancar automáticamente mostrando el tipo 1 al cargar el archivo
+        cambiarTipoTrig('tipo1');
+    </script>
+</body>
+</html>
