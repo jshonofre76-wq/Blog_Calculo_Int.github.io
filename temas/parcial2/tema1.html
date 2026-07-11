@@ -176,7 +176,7 @@
         <!-- Enlace para regresar a la raíz principal -->
         <a href="../../index.html" class="volver-btn">← Volver al Inicio</a>
 
-        <h1>Tema: Área Bajo la Curva</h1>
+        <h1>Área Bajo la Curva</h1>
 
         <div class="contenido-grid">
             
@@ -221,6 +221,14 @@
                         A = 23.25 unidades cuadradas (u²)
                     </div>
                 </div>
+
+                <!-- CONTENEDOR DE LA IMAGEN (Aparecerá solo al pulsar el Paso 3) -->
+                <div id="grafico-area-contenedor" style="display: none; margin-top: 20px; text-align: center; background: #34495e; padding: 10px; border-radius: 5px;">
+                    <p style="margin: 0 0 10px 0; font-size: 13px; color: #f1c40f;">📊 Representación Gráfica del Área:</p>
+                    <!-- Asegúrate de que el nombre coincida con tu captura de GeoGebra -->
+                    <img id="grafica-area-imagen" src="grafica_area.png" alt="Gráfica área bajo la curva" style="max-width: 420px; width: 100%; height: auto; border: 1px solid #555; border-radius: 4px;">
+                </div>
+
             </div>
 
             <!-- COLUMNA DERECHA: Bloque de Preguntas -->
@@ -260,6 +268,9 @@
         function mostrarPaso(numeroPaso) {
             document.getElementById('indicador-vacio').style.display = 'none';
             document.getElementById('paso' + numeroPaso).style.display = 'block';
+            if (numeroPaso === 3) {
+                document.getElementById('grafico-area-contenedor').style.display = 'block';
+            }
         }
 
         function mostrarRespuesta(idPregunta) {
