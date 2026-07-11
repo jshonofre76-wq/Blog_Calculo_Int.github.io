@@ -184,12 +184,12 @@
 </head>
 
 <body>
-    <!-- Copia este bloque directo dentro del body de tu archivo tema4.html -->
+    <!-- Copia este bloque directo dentro del body de tu archivo tema4-caso2.html -->
     <main>
         <!-- Enlaces de Navegación de Subtemas -->
         <div class="navegacion-superior" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
             <a href="../../index.html" class="volver-btn" style="text-decoration: none; color: #3498db; font-weight: bold;">← Volver al Inicio</a>
-            <a href="tema4-caso2.html" class="siguiente-caso-btn" style="text-decoration: none; background-color: #e67e22; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; transition: background 0.2s;">Ir a Función Paramétrica →</a>
+            <a href="tema4.html" class="caso-anterior-btn" style="text-decoration: none; background-color: #34495e; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; transition: background 0.2s;">← Volver a Función Explícita</a>
         </div>
 
         <h1>Tema: Longitud de una Curva (Arco)</h1>
@@ -199,16 +199,16 @@
             <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
                 <h2>¿Para qué sirve este tema?</h2>
                 <p>
-                    Permite calcular con precisión milimétrica la distancia o longitud que mide un segmento de línea curva trazado en el espacio bidimensional. A diferencia de las líneas rectas, las curvas requieren cálculo integral continuo para sumar infinitos segmentos infinitesimales.
+                    No todas las curvas del plano pueden modelarse con una función tradicional de tipo <em>y = f(x)</em> (por ejemplo, una circunferencia completa). En esos casos, recurrimos a las ecuaciones paramétricas, donde cada coordenada se mueve de forma independiente en función del tiempo u otro parámetro central.
                 </p>
-                <p><strong>Caso 1 (Función Explícita):</strong> Se aplica cuando la trayectoria curva está definida como una función matemática directa del tipo <em>y = f(x)</em> dentro de un intervalo cerrado [a, b].</p>
+                <p><strong>Caso 2 (Función Paramétrica):</strong> Se aplica cuando las variables <em>x</em> e <em>y</em> dependen de un tercer parámetro <em>t</em> dentro de un intervalo cerrado [a, b].</p>
             </div>
         
             <div class="bloque" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
                 <div class="video-pequeno" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
                     <iframe 
                         src="https://youtube.com" 
-                        title="Video tutorial Longitud"
+                        title="Video tutorial Paramétricas"
                         allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                         allowfullscreen>
                     </iframe>
@@ -221,57 +221,56 @@
         
             <!-- Pizarra de Ejercicio por Pasos -->
             <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                <h2>Caso 1: Función Explícita y = f(x)</h2>
-                <p><strong>Problema:</strong> Encontrar la longitud de arco de la curva y = (2/3)·x^(3/2) en el intervalo de x = 0 a x = 3.</p>
-                <p style="font-size: 14px; background: #f8f9fa; padding: 8px; border-left: 3px solid #3498db;"><strong>Fórmula Maestra:</strong> L = ₐ∫ᵇ √(1 + [f'(x)]²) dx</p>
+                <h2>Caso 2: Función Paramétrica x = x(t), y = y(t)</h2>
+                <p><strong>Problema:</strong> Encontrar la longitud de arco definida por x(t) = 4 sen(t), y(t) = 4 cos(t) + 10 en el intervalo t = 0 a t = π.</p>
+                <p style="font-size: 14px; background: #f8f9fa; padding: 8px; border-left: 3px solid #e67e22;"><strong>Fórmula Maestra:</strong> L = ₐ∫ᵇ √([dx/dt]² + [dy/dt]²) dt</p>
             
                 <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarLnPaso(1)">Paso 1</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarLnPaso(2)">Paso 2</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarLnPaso(3)">Paso 3</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarLnPaso(4)">Paso 4</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarLnPaso(5)">Paso 5</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPmPaso(1)">Paso 1</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPmPaso(2)">Paso 2</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPmPaso(3)">Paso 3</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPmPaso(4)">Paso 4</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPmPaso(5)">Paso 5</button>
                 </div>
 
-                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 220px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #3498db; line-height: 1.8;">
-                    <div id="ln-indicador">Haz clic en los botones numéricos para desplegar el desarrollo analítico.</div>
-    
-                    <div id="ln-paso1" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 1] Derivar la función original:</strong><br>
-                        f(x) = (2/3)x^(3/2)<br>
-                        f'(x) = (2/3) * (3/2)x^(1/2)<br>
-                        f'(x) = x^(1/2) &nbsp;&nbsp;[o simplemente √x]
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 220px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #e67e22; line-height: 1.8;">
+                    <div id="pm-indicador">Haz clic en los botones numéricos para desplegar el desarrollo analítico.</div>
+                
+                    <div id="pm-paso1" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 1] Derivar los componentes con respecto a t:</strong><br>
+                        x(t) = 4 sen(t) &nbsp;→ dx/dt = 4 cos(t)<br>
+                        y(t) = 4 cos(t) + 10 → dy/dt = -4 sen(t)<br>
+                        *Nota: La derivada de la constante 10 es igual a 0.
                     </div>
-    
-                    <div id="ln-paso2" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 2] Elevar la derivada al cuadrado:</strong><br>
-                        [f'(x)]² = (x^(1/2))²<br>
-                        [f'(x)]² = x
+                
+                    <div id="pm-paso2" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 2] Elevar ambas derivadas al cuadrado:</strong><br>
+                        [dx/dt]² = (4 cos(t))² = 16 cos²(t)<br>
+                        [dy/dt]² = (-4 sen(t))² = 16 sen²(t)
                     </div>
-    
-                    <div id="ln-paso3" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 3] Simplificar el término del radicando:</strong><br>
-                        Sumamos la unidad bajo la raíz:<br>
-                        1 + [f'(x)]² = 1 + x
+                
+                    <div id="pm-paso3" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 3] Sumar y simplificar mediante identidades:</strong><br>
+                        Sumamos ambos términos dentro del radicando:<br>
+                        16 cos²(t) + 16 sen²(t) = 16 * [cos²(t) + sen²(t)]<br>
+                        Aplicando la identidad fundamental [cos²(t) + sen²(t) = 1]:<br>
+                        = 16 * (1) = 16
                     </div>
-    
-                    <div id="ln-paso4" style="display: none; margin-bottom: 15px;">
+                
+                    <div id="pm-paso4" style="display: none; margin-bottom: 15px;">
                         <strong>[PASO 4] Plantear la estructura de la Integral:</strong><br>
-                        Ubicamos la expresión en el intervalo [0, 3]:<br>
-                        L = ₀∫³ √(1 + x) dx
+                        Sustituimos el valor simplificado en la raíz del intervalo [0, π]:<br>
+                        L = ₀∫^π √(16) dt<br>
+                        L = ₀∫^π 4 dt
                     </div>
-    
-                    <div id="ln-paso5" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 5] Integrar analíticamente y evaluar límites:</strong><br>
-                        • Por sustitución básica u = 1+x:<br>
-                            &nbsp;&nbsp;∫ √(1 + x) dx = (2/3)(1 + x)^(3/2)<br>
-                        • Evaluando Límite Superior (x = 3):<br>
-                            &nbsp;&nbsp;F(3) = (2/3)(1 + 3)^(3/2) = (2/3)(4)^(3/2) = (2/3)*8 = 16/3<br>
-                        • Evaluando Límite Inferior (x = 0):<br>
-                            &nbsp;&nbsp;F(0) = (2/3)(1 + 0)^(3/2) = (2/3)(1)^(3/2) = 2/3<br>
-                        • Aplicando Teorema Fundamental (F(3) - F(0)):<br>
-                            &nbsp;&nbsp;L = 16/3 - 2/3 = 14/3<br><br>
-                        <strong>Resultado Final:</strong> L = 14/3 u ≈ 4.66 unidades
+                
+                    <div id="pm-paso5" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 5] Integración directa y evaluación de límites:</strong><br>
+                        • Resolvemos la primitiva: ∫ 4 dt = 4t<br>
+                        • Aplicando el Teorema Fundamental del Cálculo en [0, π]:<br>
+                        &nbsp;&nbsp;L = [4(π)] - [4(0)]<br>
+                        &nbsp;&nbsp;L = 4π - 0<br><br>
+                        <strong>Resultado Final:</strong> L = 4π u ≈ 12.56 unidades
                     </div>
                 </div>
             </div>
@@ -281,12 +280,12 @@
                 <h2>Preguntas de Aplicación</h2>
                 <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
             
-                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarLnRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
-                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarLnRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
-                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarLnRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarPmRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarPmRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarPmRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
 
-                <div style="background: #edf7fd; border-left: 4px solid #3498db; padding: 15px; border-radius: 4px; margin-top: 15px;">
-                    <div id="ln-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                <div style="background: #edf7fd; border-left: 4px solid #e67e22; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <div id="pm-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
                         Selecciona una de las preguntas de arriba para desplegar la información aquí.
                     </div>
                 </div>
@@ -297,19 +296,19 @@
 
     <!-- --- CONTROL JAVASCRIPT --- -->
     <script>
-        function mostrarLnPaso(numeroPaso) {
-            document.getElementById('ln-indicador').style.display = 'none';
-            document.getElementById('ln-paso' + numeroPaso).style.display = 'block';
+        function mostrarPmPaso(numeroPaso) {
+            document.getElementById('pm-indicador').style.display = 'none';
+            document.getElementById('pm-paso' + numeroPaso).style.display = 'block';
         }
 
-        function mostrarLnRespuesta(idPregunta) {
-            var cuadroTexto = document.getElementById('ln-texto-respuesta');
+        function mostrarPmRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('pm-texto-respuesta');
             if (idPregunta === 1) {
-                cuadroTexto.innerHTML = "<strong>Proyectos de Infraestructura Vial y Transporte:</strong> Es crucial para calcular la cantidad exacta de asfalto o rieles necesarios al construir curvas de carreteras, autopistas cerradas o vías de tren bala de gran longitud.";
+                cuadroTexto.innerHTML = "<strong>Proyectos de Aeronáutica y Robótica:</strong> Se utiliza para calcular la distancia exacta recorrida por drones, aviones o brazos mecánicos cuyas trayectorias curvas en el espacio tridimensional varían en función del tiempo.";
             } else if (idPregunta === 2) {
-                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Se utiliza en la industria textil y de diseño de modas computarizado (CAD) para medir longitudes de costura sobre patrones de telas con curvas complejas u ondulaciones.";
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Es clave en los sistemas de navegación satelital (como Google Maps o GPS) para trazar órbitas planetarias y calcular desplazamientos curvilíneos precisos en tiempo real.";
             } else if (idPregunta === 3) {
-                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Se emplea la función de longitud de arco integrada en <strong>AutoCAD</strong>, comandos simbólicos avanzados de integración numérica en <strong>Python (SymPy)</strong>, o el software escolar <strong>GeoGebra</strong>.";
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Se emplea la calculadora gráfica avanzada Desmos, funciones de cómputo geométrico vectorial en MATLAB o scripts analíticos en Python utilizando la librería matemática NumPy.";
             }
         }
     </script>
