@@ -255,59 +255,21 @@
         
             <!-- Pizarra de Ejercicio Acumulativa -->
             <div class="bloque">
-                <h2>Ejercicio Práctico Cíclico</h2>
-                <p><strong>Problema:</strong> Resolver la integral indefinida: ∫ eˣ cos(x) dx</p>
-                <p style="font-size: 14px; background: #f8f9fa; padding: 8px; border-left: 3px solid #27ae60;"><strong>Fórmula Base:</strong> ∫ u dv = u·v - ∫ v du</p>
-            
-                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
-                    <button class="btn-paso" onclick="mostrarPartesPaso(1)">Paso 1: Primera Sustitución</button>
-                    <button class="btn-paso" onclick="mostrarPartesPaso(2)">Paso 2: Primera Integración</button>
-                    <button class="btn-paso" onclick="mostrarPartesPaso(3)">Paso 3: Segunda Integración</button>
-                    <button class="btn-paso" onclick="mostrarPartesPaso(4)">Paso 4: Identificar el Ciclo</button>
-                    <button class="btn-paso" onclick="mostrarPartesPaso(5)">Paso 5: Despeje y Solución</button>
+                <!-- SELECTOR DE EJERCICIOS DENTRO DEL TEMA -->
+                <div style="margin-bottom: 15px; background: #f8f9fa; padding: 10px; border-radius: 6px; border-left: 4px solid #27ae60;">
+                    <p style="margin: 0 0 8px 0; font-weight: bold; font-size: 14px;">Selecciona el tipo de ejercicio por partes:</p>
+                    <button class="btn-paso" style="background-color: #34495e; padding: 6px 12px; font-size: 12px;" onclick="cambiarEjercicioPartes('ejercicioNormal')">Ejemplo 1: Reducción Algebraica</button>
+                    <button class="btn-paso" style="background-color: #2980b9; padding: 6px 12px; font-size: 12px;" onclick="cambiarEjercicioPartes('ejercicioCiclico')">Ejemplo 2: Integral Cíclica</button>
                 </div>
 
-                <div class="pizarra-ejercicio">
-                    <div id="partes-indicador">Haz clic en los pasos de arriba para desplegar el desarrollo analítico paso a paso.</div>
-                
-                    <div id="partes-paso1" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 1] Seleccionar variables usando ILATE:</strong><br>
-                        Tenemos una función Trigonométrica [cos(x)] y una Exponencial [eˣ]. Por orden de prioridad, la trigonométrica va primero:<br>
-                        • u = cos(x) &nbsp;&nbsp;→ &nbsp;du = -sin(x) dx<br>
-                        • dv = eˣ dx &nbsp;→ &nbsp;v = eˣ
-                    </div>
-                
-                    <div id="partes-paso2" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 2] Aplicar la fórmula por primera vez:</strong><br>
-                        Sustituimos la estructura en la ecuación original (u·v - ∫ v du):<br>
-                        ∫ eˣ cos(x) dx = cos(x)·eˣ - ∫ e * (-sin(x)) dx<br>
-                        ∫ eˣ cos(x) dx = eˣ cos(x) + <strong>∫ eˣ sin(x) dx</strong>
-                    </div>
-                
-                    <div id="partes-paso3" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 3] Aplicar el método a la nueva integral interna:</strong><br>
-                        Volvemos a integrar por partes la expresión ∫ eˣ sin(x) dx manteniendo el mismo orden de prioridad:<br>
-                        • u = sin(x) &nbsp;&nbsp;→ &nbsp;du = cos(x) dx<br>
-                        • dv = eˣ dx &nbsp;→ &nbsp;v = eˣ<br>
-                        Desarrollo interno: [ sin(x)·eˣ - ∫ eˣ cos(x) dx ]
-                    </div>
-                
-                    <div id="partes-paso4" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 4] Unificar las dos etapas e identificar la repetición:</strong><br>
-                        Reunimos todo el camino algebraico en una sola ecuación lineal:<br>
-                        ∫ eˣ cos(x) dx = eˣ cos(x) + eˣ sin(x) - <strong>∫ eˣ cos(x) dx</strong><br>
-                        *¡Fíjate bien! La integral que resta al final es exactamente igual a nuestra integral original del enunciado. El ciclo se ha cerrado.
-                    </div>
-                
-                    <div id="partes-paso5" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 5] Despejar algebraicamente la integral y añadir +C:</strong><br>
-                        Pasamos la integral que está restando en el miembro derecho a sumar al miembro izquierdo:<br>
-                        2 ∫ eˣ cos(x) dx = eˣ cos(x) + eˣ sin(x)<br>
-                        Pasamos el número 2 a dividir al otro lado y factorizamos eˣ:<br>
-                        <br>
-                        <strong>Resultado Final:</strong> [ eˣ (cos(x) + sin(x)) / 2 ] + C
-                    </div>
+                <p id="enunciado-partes"><strong>Problema:</strong> Resolver la integral indefinida: ∫ (2x² + 3x - 5) sin(x) dx</p>
+                <p style="font-size: 14px; background: #f8f9fa; padding: 8px; border-left: 3px solid #27ae60;"><strong>Fórmula Base:</strong> ∫ u dv = u·v - ∫ v du</p>
+            
+                <!-- Contenedor dinámico de botones de pasos -->
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <!-- El JavaScript inyectará automáticamente los botones correctos aquí -->
                 </div>
+
             </div>
 
             <!-- Panel de Preguntas con posición inteligente flotante (Sticky) -->
@@ -339,10 +301,78 @@
             document.getElementById('modalIlate').style.display = 'none';
         }
 
+        // Base de datos integrada con ambos ejercicios por partes
+        let ejercicioActual = 'ejercicioNormal';
+
+        const basePartes = {
+            ejercicioNormal: {
+                enunciado: "<strong>Problema:</strong> Resolver la integral indefinida: ∫ (2x² + 3x - 5) sin(x) dx",
+                pasos: 5,
+                paso1: "<strong>[PASO 1] Seleccionar variables u y dv con ILATE:</strong><br>Tenemos una función Algebraica [2x² + 3x - 5] y una Trigonométrica [sin(x)]. Por prioridad, la algebraica va primero:<br>• u = 2x² + 3x - 5 &nbsp;→ &nbsp;du = (4x + 3) dx<br>• dv = sin(x) dx &nbsp;&nbsp;&nbsp;→ &nbsp;v = -cos(x)",
+                paso2: "<strong>[PASO 2] Aplicar la primera etapa de la fórmula:</strong><br>Sustituimos en la ecuación (u·v - ∫ v du):<br>= (2x² + 3x - 5)(-cos(x)) - ∫ (-cos(x))(4x + 3) dx<br>= -(2x² + 3x - 5)cos(x) + <strong>∫ (4x + 3)cos(x) dx</strong>",
+                paso3: "<strong>[PASO 3] Integrar por partes la expresión interna restante:</strong><br>Aplicamos nuevamente el método a la integral ∫ (4x + 3)cos(x) dx para reducir el grado de la x:<br>• u = 4x + 3 &nbsp;→ &nbsp;du = 4 dx<br>• dv = cos(x) dx → &nbsp;v = sin(x)<br>Desarrollo interno: [ (4x + 3)sin(x) - ∫ 4 sin(x) dx ]",
+                paso4: "<strong>[PASO 4] Unificar las dos etapas algebraicas:</strong><br>Juntamos todo el camino recorrido cuidando los signos distributivos:<br>= -(2x² + 3x - 5)cos(x) + (4x + 3)sin(x) - 4 ∫ sin(x) dx",
+                paso5: "<strong>[PASO 5] Resolver la última integral directa y añadir +C:</strong><br>La integral directa de sin(x) es -cos(x). Multiplicando signos de cierre (-4 · -cos(x) = +4cos(x)):<br><br><strong>Resultado Final:</strong> -(2x² + 3x - 5)cos(x) + (4x + 3)sin(x) + 4cos(x) + C"
+            },
+            ejercicioCiclico: {
+                enunciado: "<strong>Problema:</strong> Resolver la integral indefinida cíclica: ∫ eˣ cos(x) dx",
+                pasos: 5,
+                paso1: "<strong>[PASO 1] Seleccionar variables u y dv con ILATE:</strong><br>Tenemos una función Trigonométrica [cos(x)] y una Exponencial [eˣ]. Por orden de prioridad, la trigonométrica va primero:<br>• u = cos(x) &nbsp;&nbsp;→ &nbsp;du = -sin(x) dx<br>• dv = eˣ dx &nbsp;→ &nbsp;v = eˣ",
+                paso2: "<strong>[PASO 2] Aplicar la fórmula por primera vez:</strong><br>Sustituimos la estructura en la ecuación (u·v - ∫ v du):<br>∫ eˣ cos(x) dx = cos(x)·eˣ - ∫ eˣ · (-sin(x)) dx<br>∫ eˣ cos(x) dx = eˣ cos(x) + <strong>∫ eˣ sin(x) dx</strong>",
+                paso3: "<strong>[PASO 3] Aplicar el método a la nueva integral interna:</strong><br>Volvemos a integrar por partes la expresión ∫ eˣ sin(x) dx manteniendo el mismo orden de prioridad:<br>• u = sin(x) &nbsp;&nbsp;→ &nbsp;du = cos(x) dx<br>• dv = eˣ dx &nbsp;→ &nbsp;v = eˣ<br>Desarrollo interno: [ sin(x)·eˣ - ∫ eˣ cos(x) dx ]",
+                paso4: "<strong>[PASO 4] Unificar las etapas e identificar la repetición:</strong><br>Reunimos todo el camino algebraico en una sola ecuación lineal:<br>∫ eˣ cos(x) dx = eˣ cos(x) + eˣ sin(x) - <strong>∫ eˣ cos(x) dx</strong><br>*¡Cierre de ciclo! La integral que resta al final es idéntica al enunciado original.",
+                paso5: "<strong>[PASO 5] Despejar la integral y añadir la constante +C:</strong><br>Pasamos la integral restando de la derecha a sumar a la izquierda y despejamos:<br>2 ∫ eˣ cos(x) dx = eˣ(cos(x) + sin(x))<br><br><strong>Resultado Final:</strong> [ eˣ (cos(x) + sin(x)) / 2 ] + C"
+            }
+        };
+
+        // Cambia dinámicamente entre el ejercicio normal y el cíclico
+        function cambiarEjercicioPartes(idEjercicio) {
+            ejercicioActual = idEjercicio;
+            document.getElementById('enunciado-partes').innerHTML = basePartes[idEjercicio].enunciado;
+        
+            // Resetear la pizarra
+            document.getElementById('partes-indicador').style.display = 'block';
+            for (let i = 1; i <= 5; i++) {
+                let contenedorPaso = document.getElementById('partes-paso' + i);
+                if (contenedorPaso) {
+                    contenedorPaso.style.display = 'none';
+                    contenedorPaso.innerHTML = '';
+                }
+            } 
+        
+            // Regenerar los botones de pasos
+            generarBotonesPasos(basePartes[idEjercicio].pasos);
+        }
+
+        // Dibuja los botones en el HTML según los pasos necesarios
+        function generarBotonesPasos(totalPasos) {
+            const contenedor = document.querySelector('.controles-pasos');
+            contenedor.innerHTML = '';
+            for (let i = 1; i <= totalPasos; i++) {
+                contenedor.innerHTML += `<button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPartesPaso(${i})">Paso ${i}</button>`;
+            }
+        }
+
+        // Muestra los pasos de forma acumulativa
         function mostrarPartesPaso(numeroPaso) {
             document.getElementById('partes-indicador').style.display = 'none';
-            document.getElementById('partes-paso' + numeroPaso).style.display = 'block';
+        
+            let contenedorPaso = document.getElementById('partes-paso' + numeroPaso);
+            if (!contenedorPaso) {
+                const pizarra = document.querySelector('.pizarra-ejercicio');
+                contenedorPaso = document.createElement('div');
+                contenedorPaso.id = 'partes-paso' + numeroPaso;
+                contenedorPaso.style.marginBottom = '15px';
+                pizarra.appendChild(contenedorPaso);
+            }
+        
+            contenedorPaso.innerHTML = basePartes[ejercicioActual]['paso' + numeroPaso];
+            contenedorPaso.style.display = 'block';
         }
+
+        // Inicializar el primer ejercicio de forma automática al cargar la página
+        cambiarEjercicioPartes('ejercicioNormal');
+
 
         function mostrarPartesRespuesta(idPregunta) {
             var cuadroTexto = document.getElementById('partes-texto-respuesta');
@@ -354,6 +384,8 @@
                 cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Para no perderse en los signos de los ciclos algebraicos se recurre al comando 'int' en software matemático como <strong>MATLAB</strong> o la plataforma escolar interactiva <strong>Symbolab</strong>.";
             }
         }
+
     </script>
+    
 </body>
 </html>
