@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Funciones Racionales - Caso 1</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        main {
+            max-width: 1100px;
+            width: 100%;
+        }
+
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        .navegacion-superior {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            width: 100%;
+        }
+
+        .volver-btn {
+            text-decoration: none;
+            color: #3498db;
+            font-weight: bold;
+        }
+
+        .siguiente-caso-btn {
+            text-decoration: none;
+            background-color: #e67e22;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+
+        .siguiente-caso-btn:hover {
+            background-color: #d35400;
+        }
+
+        /* --- FILA SUPERIOR: TEORÍA Y VIDEO --- */
+        .fila-superior {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .bloque {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+        }
+
+        h2 {
+            color: #2c3e50;
+            margin-top: 0;
+        }
+
+        .video-pequeno {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            border-radius: 6px;
+            background: #000;
+        }
+
+        .video-pequeno iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+
+        /* --- FILA INFERIOR: EJERCICIO Y PREGUNTAS --- */
+        .fila-inferior {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        /* --- CONTROLES Y PIZARRA --- */
+        .controles-pasos {
+            display: flex;
+            gap: 8px;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+
+        .btn-paso {
+            background-color: #34495e;
+            color: white;
+            border: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 13px;
+            transition: background 0.2s;
+        }
+
+        .btn-paso:hover {
+            background-color: #2c3e50;
+        }
+
+        .pizarra-ejercicio {
+            background-color: #2c3e50;
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 220px;
+            font-family: 'Courier New', Courier, monospace;
+            border-left: 5px solid #3498db;
+            line-height: 1.6;
+        }
+
+        .paso-oculto {
+            display: none;
+            margin-bottom: 15px;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        /* --- PREGUNTAS DE APLICACIÓN --- */
+        .btn-pregunta {
+            width: 100%;
+            text-align: left;
+            background: #ecf0f1;
+            border: 1px solid #bdc3c7;
+            padding: 12px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            color: #2c3e50;
+            transition: background 0.2s;
+        }
+
+        .btn-pregunta:hover {
+            background: #d5dbdb;
+        }
+
+        .contenedor-respuesta {
+            background: #edf7fd;
+            border-left: 4px solid #3498db;
+            padding: 15px;
+            border-radius: 4px;
+            margin-top: 15px;
+            min-height: 80px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(5px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 850px) {
+            .fila-superior, .fila-inferior { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Copia este bloque directo dentro del body de tu archivo tema5-sustitucion.html -->
+    <main style="max-width: 1100px; width: 100%; margin: 0 auto; padding: 20px;">
+        <!-- Enlaces de Navegación -->
+        <div class="navegacion-superior" style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; width: 100%;">
+            <a href="../../index.html" class="volver-btn" style="text-decoration: none; color: #3498db; font-weight: bold;">← Volver al Inicio</a>
+            <a href="tema5.html" class="caso-anterior-btn" style="text-decoration: none; background-color: #34495e; color: white; padding: 10px 15px; border-radius: 5px; font-weight: bold; transition: background 0.2s;">← Volver a Integrales Trigonométricas</a>
+        </div>
+
+        <h1>Tema Especial: Sustitución Trigonométrica</h1>
+
+        <!-- FILA SUPERIOR: Teoría al lado del Video -->
+        <div class="fila-superior" style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>¿Para qué sirve este tema y cómo usa a Pitágoras?</h2>
+                <p>
+                    Este método se aplica para resolver integrales que contienen radicales de la forma <strong>√(a² - x²)</strong>, <strong>√(a² + x²)</strong> o <strong>√(x² - a²)</strong>. 
+                </p>
+                <p>
+                    Utiliza el <strong>Teorema de Pitágoras</strong> de forma inversa: asociamos la raíz y la variable <em>x</em> a los lados de un triángulo rectángulo (cateto opuesto, cateto adyacente e hipotenusa). Esto nos permite cambiar una difícil raíz algebraica por funciones trigonométricas directas muy fáciles de integrar.
+                </p>
+            </div>
+        
+            <div class="bloque" style="background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <div class="video-pequeno" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 6px; background: #000;">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Video Sustitucion Trigonometrica"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 6px;">
+                    </iframe>
+                </div>
+            </div>
+        </div>
+
+        <!-- FILA INFERIOR: Ejercicio y Preguntas -->
+        <div class="fila-inferior" style="display: grid; grid-template-columns: 1.5fr 1fr; gap: 30px;">
+        
+            <!-- Pizarra de Ejercicio por Pasos -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
+                <h2>Caso √(a² - x²): Método del Triángulo</h2>
+                <p><strong>Problema Común:</strong> Resolver la integral: ∫ 1 / √(4 - x²) dx</p>
+            
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(1)">Paso 1: Construir Triángulo</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(2)">Paso 2: Diferencial DX</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(3)">Paso 3: Sustituir Raíz</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(4)">Paso 4: Integrar en θ</button>
+                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(5)">Paso 5: Regresar a X</button>
+                </div>
+
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 220px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #e67e22; line-height: 1.8;">
+                    <div id="pita-indicador">Haz clic en los pasos superiores para ver el uso de Pitágoras en la integral.</div>
+                
+                    <div id="pita-paso1" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 1] Construir el triángulo de Pitágoras:</strong><br>
+                        Para √(4 - x²), la hipotenusa vale √4 = 2, el cateto opuesto vale √x² = x, y por Pitágoras el cateto adyacente es √(4 - x²).<br>
+                        Definimos la relación del seno del ángulo θ:<br>
+                        sin(θ) = x / 2 &nbsp;→&nbsp; <strong>x = 2 sin(θ)</strong>
+                    </div>
+                
+                    <div id="pita-paso2" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 2] Calcular el diferencial dx:</strong><br>
+                        Derivamos la expresión de x encontrada en el paso anterior respecto a θ:<br>
+                        <strong>dx = 2 cos(θ) dθ</strong>
+                    </div>
+                
+                    <div id="pita-paso3" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 3] Sustituir el radical e inyectar en la integral:</strong><br>
+                        Por relación trigonométrica del coseno en nuestro triángulo: cos(θ) = √(4 - x²) / 2, lo que significa que <strong>√(4 - x²) = 2 cos(θ)</strong>.<br>
+                        Sustituimos todo en la integral original:<br>
+                        ∫ [ 1 / (2 cos(θ)) ] · 2 cos(θ) dθ
+                    </div>
+                
+                    <div id="pita-paso4" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 4] Simplificar la expresión e integrar de forma inmediata:</strong><br>
+                        Los términos algebraicos repetidos (2 cos(θ)) arriba y abajo se cancelan por completo:<br>
+                        ∫ 1 dθ = <strong>θ + C</strong>
+                    </div>
+                
+                    <div id="pita-paso5" style="display: none; margin-bottom: 15px;">
+                        <strong>[PASO 5] Despejar θ para regresar a la variable original x:</strong><br>
+                        Del paso 1 sabemos que sin(θ) = x / 2. Si aplicamos la función inversa arcoseno (arcsin) despejamos el ángulo:<br>
+                        θ = arcsin(x / 2)<br><br>
+                        <strong>Resultado Final:</strong> arcsin(x / 2) + C
+                    </div>
+                </div>
+            </div>
+
+            <!-- Panel de Preguntas Sticky -->
+            <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 20px; align-self: start;">
+                <h2>Preguntas de Aplicación</h2>
+                <button class="btn-pregunta" onclick="mostrarPitaRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarPitaRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarPitaRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+
+                <div style="background: #edf7fd; border-left: 4px solid #e67e22; padding: 15px; border-radius: 4px; margin-top: 15px;">
+                    <div id="pita-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
+                        Selecciona una de las preguntas de arriba para desplegar la información aquí.
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function mostrarPitaPaso(numeroPaso) {
+            document.getElementById('pita-indicador').style.display = 'none';
+            document.getElementById('pita-paso' + numeroPaso).style.display = 'block';
+        }
+
+        function mostrarPitaRespuesta(idPregunta) {
+            var cuadroTexto = document.getElementById('pita-texto-respuesta');
+            if (idPregunta === 1) {
+                cuadroTexto.innerHTML = "<strong>Proyectos de Mecánica Avanzada y Aviación:</strong> Es indispensable para modelar la fricción del aire sobre las alas arqueadas de aviones o la distribución de masa en poleas elípticas de motores industriales.";
+            } else if (idPregunta === 2) {
+                cuadroTexto.innerHTML = "<strong>Aplicación en la vida real:</strong> Se utiliza en arquitectura para calcular la longitud estructural exacta y los materiales requeridos al edificar techos con formas de domos semicirculares o arcos romanos perfectos.";
+            } else if (idPregunta === 3) {
+                cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Entornos algebraicos computacionales como <strong>Maple</strong>, el motor de matemáticas de <strong>WolframAlpha</strong> o la librería <strong>SymPy de Python</strong> resuelven estas raíces pitagóricas pesadas al instante.";
+            }
+        }
+    </script>
+
+</body>
+</html>
