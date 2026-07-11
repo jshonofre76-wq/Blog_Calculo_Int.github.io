@@ -251,11 +251,11 @@
                                 <!-- El triángulo azul de fondo -->
                                 <div style="width: 0; height: 0; border-style: solid; border-width: 0 0 95px 140px; border-color: transparent transparent #3498db transparent; position: absolute; top: 0; left: 0;"></div>
                             
-                                <!-- NUEVO: Semicírculo o Arco del Ángulo en la Esquina Izquierda -->
-                                <div style="position: absolute; bottom: 0; left: 0; width: 35px; height: 35px; border: 2px solid #ffffff; border-radius: 0 100% 0 0; border-bottom: none; border-left: none; box-sizing: border-box; pointer-events: none;"></div>
+                                <!-- ARCO CORREGIDO: Ajustado y rotado para encajar dentro del triángulo azul -->
+                                <div style="position: absolute; bottom: 0; left: 0; width: 45px; height: 45px; border: 2px solid #ffffff; border-radius: 0 100% 0 0; border-bottom: none; border-left: none; box-sizing: border-box; pointer-events: none; transform: rotate(-10deg); transform-origin: bottom left;"></div>
                             
-                                <!-- Ángulo Theta (Ubicado estratégicamente dentro del arco) -->
-                                <span style="position: absolute; bottom: 8px; left: 14px; color: #fff; font-size: 13px; font-weight: bold;">θ</span>
+                                <!-- Ángulo Theta posicionado milimétricamente en el vértice -->
+                                <span style="position: absolute; bottom: 6px; left: 16px; color: #fff; font-size: 13px; font-weight: bold; z-index: 10;">θ</span>
 
                                 <!-- Hipotenusa (Ubicada perfectamente arriba a la izquierda de la diagonal) -->
                                 <span style="position: absolute; top: -35px; left: -10px; color: #f1c40f; font-weight: bold; font-size: 13px; text-align: center; line-height: 1.3; white-space: nowrap;">
