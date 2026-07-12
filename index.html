@@ -5,83 +5,107 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Curso de Cálculo Integral</title>
     <style>
-        /* --- ESTILOS GENERALES Y LIGEROS --- */
+        /* --- ESTILOS GENERALES Y FONDO DINÁMICO --- */
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
             margin: 0;
-            padding: 20px;
+            padding: 40px 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            /* Degradado con colores pastel más vivos y notorios */
+            background: linear-gradient(-45deg, #d5f5e3, #e8f8f5, #d6eaf8, #fadbd8);
+            background-size: 400% 400%;
+            animation: movimientoGradiente 10s ease infinite; /* Bajado a 10s para que sea más dinámico */
+            min-height: 100vh;
+            box-sizing: border-box;
         }
 
+        @keyframes movimientoGradiente {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* --- CONTENEDOR MAESTRO HORIZONTAL --- */
         main {
-            max-width: 900px;
+            max-width: 1200px;
             width: 100%;
         }
 
-        /* --- ANIMACIÓN DEL TÍTULO (Izquierda a Derecha) --- */
+        /* --- ANIMACIÓN FLUIDA DEL TÍTULO --- */
         .marquee-container {
             width: 100%;
             overflow: hidden;
-            background: #2c3e50;
+            background: linear-gradient(135deg, #1e293b, #2c3e50);
             border-radius: 8px;
-            padding: 10px 0;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            padding: 14px 0;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.15);
         }
 
         .marquee-text {
             display: inline-block;
             white-space: nowrap;
-            font-size: 24px;
+            font-size: 26px;
             font-weight: bold;
             color: #ffffff;
+            padding-left: 100%;
             animation: moverTexto 12s linear infinite;
         }
 
         @keyframes moverTexto {
-            0% { transform: translate3d(-100%, 0, 0); }
-            100% { transform: translate3d(100%, 0, 0); }
+            0% { transform: translate3d(0%, 0, 0); }
+            100% { transform: translate3d(-100%, 0, 0); }
         }
 
-        /* --- SECCIÓN INTRODUCTORIA (Texto e Imagen) --- */
-        .intro-section {
-            display: flex;
-            gap: 20px;
+        /* --- ESTRUCTURA DE DOS COLUMNAS --- */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.2fr 1fr; /* Izquierda ligeramente más ancha para el video */
+            gap: 40px; /* Margen de separación generoso entre las dos columnas */
+            width: 100%;
+            align-items: start;
+        }
+
+        /* --- BLOQUES DE CONTENIDO CONTROLOGADOS --- */
+        .bloque {
             background: white;
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            margin-bottom: 25px;
-            align-items: center;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.05);
+            box-sizing: border-box;
         }
 
-        .intro-text {
-            flex: 1;
-            line-height: 1.6;
+        /* --- COLUMNA IZQUIERDA (Teoría + Video) --- */
+        .columna-izquierda {
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* Margen de separación entre el concepto y el video */
         }
 
-        .intro-image {
-            flex: 1;
-            max-width: 100%;
-            height: auto;
-            border-radius: 6px;
-            border: 1px solid #ddd;
+        .intro-text h2 {
+            color: #2c3e50;
+            margin-top: 0;
+            font-size: 22px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
         }
 
-        /* --- SECCIÓN MULTIMEDIA (Video de YouTube) --- */
+        .intro-text p {
+            line-height: 1.7;
+            color: #4a5568;
+            font-size: 15px;
+        }
+
         .video-container {
             position: relative;
-            padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
+            padding-bottom: 56.25%; /* Relación 16:9 */
             height: 0;
             overflow: hidden;
             background: #000;
-            border-radius: 8px;
-            margin-bottom: 30px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0,0,0,0.1);
         }
 
         .video-container iframe {
@@ -93,118 +117,145 @@
             border: 0;
         }
 
-        /* --- PANELES DE NAVEGACIÓN (Los Dos Cuadros de Parciales) --- */
-        .parciales-container {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 25px;
-            margin-bottom: 40px;
+        /* --- COLUMNA DERECHA (Parciales Apilados) --- */
+        .columna-derecha {
+            display: flex;
+            flex-direction: column;
+            gap: 30px; /* Margen de separación entre el Parcial 1 y el Parcial 2 */
         }
 
         .cuadro-parcial {
-            background: white;
-            border: 2px solid #34495e;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
             text-align: center;
+            transition: all 0.3s ease;
         }
 
-        .cuadro-parcial h2 {
-            color: #2c3e50;
+        /* Colores del Primer Parcial */
+        .parcial-uno {
+            background-color: #ebf5fb; 
+            border: 2px solid #3498db;
+        }
+        .parcial-uno h2 {
+            color: #2980b9;
             margin-top: 0;
-            border-bottom: 2px solid #ecf0f1;
-            padding-bottom: 10px;
+            border-bottom: 2px solid #d4e6f1;
+            padding-bottom: 8px;
         }
 
-        /* --- BOTONES INTERACTIVOS --- */
+        /* Colores del Segundo Parcial */
+        .parcial-dos {
+            background-color: #eaedd1; 
+            border: 2px solid #27ae60;
+        }
+        .parcial-dos h2 {
+            color: #27ae60;
+            margin-top: 0;
+            border-bottom: 2px solid #d5dbdb;
+            padding-bottom: 8px;
+        }
+
+        /* Levitación del cuadro al pasar el mouse */
+        .cuadro-parcial:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(0,0,0,0.1);
+        }
+
+        /* --- BOTONES DE LOS TEMAS --- */
         .btn-tema {
             display: block;
             width: 100%;
             padding: 12px;
-            margin: 10px 0;
-            background-color: #3498db;
+            margin: 12px 0;
             color: white;
             text-decoration: none;
             font-weight: bold;
-            border-radius: 5px;
-            transition: background 0.2s ease, transform 0.1s ease;
+            border-radius: 6px;
+            transition: all 0.3s ease;
             box-sizing: border-box;
+            box-shadow: 0 3px 6px rgba(0,0,0,0.08);
+            font-size: 14px;
         }
 
         .btn-tema:hover {
-            background-color: #2980b9;
             transform: scale(1.02);
+            box-shadow: 0 6px 14px rgba(0,0,0,0.15);
+            filter: brightness(1.08);
         }
 
-        .btn-tema:active {
-            transform: scale(0.98);
-        }
-
-        /* Responsivo para pantallas pequeñas */
-        @media (max-width: 768px) {
-            .intro-section { flex-direction: column; }
-            .parciales-container { grid-template-columns: 1fr; }
+        /* --- RESPONSIVO PARA PANTALLAS PEQUEÑAS --- */
+        @media (max-width: 900px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr; /* Se hace vertical en celulares */
+                gap: 30px;
+            }
+            body {
+                padding: 20px 10px;
+            }
         }
     </style>
 </head>
 <body>
 
     <main>
-        <!-- 1. Encabezado Animado de Izquierda a Derecha -->
+        <!-- Título principal animado en la parte superior central -->
         <div class="marquee-container">
-            <div class="marquee-text">Blog de Cálculo Integral</div>
+            <div class="marquee-text">Proyecto Portafolio De Cálculo Integral</div>
         </div>
 
-        <!-- 2. Sección Teórica con Definición e Imagen -->
-        <section class="intro-section">
-            <div class="intro-text">
-                <h2>¿Qué es el Cálculo Integral?</h2>
-                <p>
-                    El <strong>cálculo integral</strong> es una rama de las matemáticas que se encarga del estudio de la integración o antiderivación. Su principal objetivo es hallar la función original (primitiva) a partir de su derivada, además de permitir el cálculo de áreas y volúmenes de regiones y sólidos de revolución complejos.
-                </p>
-                <p>
-                    Funciona de forma inversa a la diferenciación y es una herramienta fundamental en áreas como la ingeniería, la física y la economía.
-                </p>
-            </div>
-            <!-- Imagen ilustrativa temporal usando una URL libre (Área bajo la curva) -->
-            <img class="intro-image" src="https://images.unsplash.com/photo-1754304342501-54bad0a6d195?q=80&w=1170&auto=format&fit=crop" alt="Gráfica matemática de cálculo integral" style="max-width: 350px; height: auto;">
-        </section>
-
-        <!-- 3. Sección de Video de YouTube Incrustado -->
-        <section class="video-container">
-            <iframe 
-                src="https://www.youtube.com/embed/d7Y9Om4KCUM" 
-                title="Integrales | Introducción" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
-                allowfullscreen>
-            </iframe >
-        </section>
-
-        <!-- 4. Cuadros de los Parciales con Enlaces Relativos -->
-        <section class="parciales-container">
+        <!-- REJILLA PRINCIPAL EN DOS COLUMNAS HORIZONTALES -->
+        <div class="dashboard-grid">
             
-            <!-- Cuadro Primer Parcial -->
-            <div class="cuadro-parcial" style="border-color: #3498db;">
-                <h2>Primer Parcial</h2>
-                <a href="temas/parcial1/tema1.html" class="btn-tema" style="background-color: #3498db;">1. Integrales Indefinidas</a>
-                <a href="temas/parcial1/tema2.html" class="btn-tema" style="background-color: #3498db;">2. Integrales Definidas</a>
-                <a href="temas/parcial1/tema3.html" class="btn-tema" style="background-color: #3498db;">3. Integración por Partes</a>
-                <a href="temas/parcial1/tema4.html" class="btn-tema" style="background-color: #3498db;">4. Integrales por Sustitución</a>
-                <a href="temas/parcial1/tema5.html" class="btn-tema" style="background-color: #3498db;">5. Integrales Trigonométricas</a>
+            <!-- COLUMNA IZQUIERDA: Concepto + Video (Sin Imagen) -->
+            <div class="columna-izquierda">
+                
+                <!-- Bloque Teórico -->
+                <div class="bloque intro-text">
+                    <h2>¿Qué es el Cálculo Integral?</h2>
+                    <p>
+                        El <strong>cálculo integral</strong> es una rama de las matemáticas avanzadas que se encarga del estudio de la integración o antiderivación. Su principal objetivo es hallar la función original (primitiva) a partir de su derivada, además de permitir el cálculo de áreas irregulares y volúmenes de sólidos de revolución complejos.
+                    </p>
+                    <p>
+                        Funciona de forma inversa a la diferenciación y es una herramienta científica e ingenieril fundamental en áreas como la optimización industrial, la física clásica y el modelado financiero.
+                    </p>
+                </div>
+
+                <!-- Bloque del Video de YouTube -->
+                <section class="video-container">
+                    <iframe 
+                        src="https://youtube.com" 
+                        title="Integrales | Introducción" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                        allowfullscreen>
+                    </iframe >
+                </section>
+                
             </div>
 
-            <!-- Cuadro Segundo Parcial -->
-            <div class="cuadro-parcial" style="border-color: #27ae60;">
-                <h2>Segundo Parcial</h2>
-                <a href="temas/parcial2/tema1.html" class="btn-tema" style="background-color: #27ae60;">6. Área Bajo la Curva</a>
-                <a href="temas/parcial2/tema2.html" class="btn-tema" style="background-color: #27ae60;">7. Funciones Racionales</a>
-                <a href="temas/parcial2/tema3.html" class="btn-tema" style="background-color: #27ae60;">8. Volumen de Revolución</a>
-                <a href="temas/parcial2/tema4.html" class="btn-tema" style="background-color: #27ae60;">9. Longitud de una Curva</a>
-                <a href="temas/parcial2/tema5.html" class="btn-tema" style="background-color: #27ae60;">10. Aplicaciones en Cinemática</a>
+            <!-- COLUMNA DERECHA: Parciales Apilados (Uno arriba y otro abajo) -->
+            <div class="columna-derecha">
+                
+                <!-- Cuadro Primer Parcial (Arriba) -->
+                <div class="bloque cuadro-parcial parcial-uno">
+                    <h2>Primer Parcial</h2>
+                    <a href="temas/parcial1/tema1.html" class="btn-tema" style="background-color: #5dade2;">1. Integrales Indefinidas</a>
+                    <a href="temas/parcial1/tema2.html" class="btn-tema" style="background-color: #7fb3d5;">2. Integrales Definidas</a>
+                    <a href="temas/parcial1/tema3.html" class="btn-tema" style="background-color: #a569bd;">3. Integración por Partes</a>
+                    <a href="temas/parcial1/tema4.html" class="btn-tema" style="background-color: #f4d03f;">4. Integrales por Sustitución</a>
+                    <a href="temas/parcial1/tema5.html" class="btn-tema" style="background-color: #eb984e;">5. Integrales Trigonométricas</a>
+                </div>
+
+                <!-- Cuadro Segundo Parcial (Abajo) -->
+                <div class="bloque cuadro-parcial parcial-dos">
+                    <h2>Segundo Parcial</h2>
+                    <a href="temas/parcial2/tema1.html" class="btn-tema" style="background-color: #ec7063;">6. Área Bajo la Curva</a>
+                    <a href="temas/parcial2/tema2.html" class="btn-tema" style="background-color: #af7ac5;">7. Funciones Racionales</a>
+                    <a href="temas/parcial2/tema3.html" class="btn-tema" style="background-color: #52be80;">8. Volumen de Revolución</a>
+                    <a href="temas/parcial2/tema4.html" class="btn-tema" style="background-color: #dc7633;">9. Longitud de una Curva</a>
+                    <a href="temas/parcial2/tema5.html" class="btn-tema" style="background-color: #48c9b0;">10. Aplicaciones en Cinemática</a>
+                </div>
+
             </div>
 
-        </section>
+        </div> <!-- Fin de la rejilla -->
     </main>
 
 </body>

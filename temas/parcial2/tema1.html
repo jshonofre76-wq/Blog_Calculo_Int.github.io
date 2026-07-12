@@ -5,16 +5,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Área Bajo la Curva - Cálculo Integral</title>
     <style>
+        
         body {
             font-family: 'Segoe UI', Geneva, Verdana, sans-serif;
-            background-color: #f4f7f6;
-            color: #333;
             margin: 0;
             padding: 20px;
             display: flex;
             flex-direction: column;
             align-items: center;
+            /* Mismo fondo vivo de la página principal */
+            background: linear-gradient(-45deg, #d5f5e3, #e8f8f5, #d6eaf8, #fadbd8);
+            background-size: 400% 400%;
+            animation: movimientoGradiente 10s ease infinite;
+            min-height: 100vh;
         }
+
+        @keyframes movimientoGradiente {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
 
         main {
             max-width: 1100px;
