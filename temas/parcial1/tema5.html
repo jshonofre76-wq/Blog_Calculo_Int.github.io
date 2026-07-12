@@ -350,8 +350,8 @@
                 paso2: "<strong>[PASO 2] Aplicar identidad pitagórica:</strong><br>Usamos la fórmula del formulario [sin²(x) = 1 - cos²(x)] para transformar el término par:<br>∫ (1 - cos²(x)) sin(x) dx",
                 paso3: "<strong>[PASO 3] Cambio de variable (u-substitution):</strong><br>Definimos u como la función base del término par:<br>u = cos(x)<br>du = -sin(x) dx &nbsp;→&nbsp; -du = sin(x) dx",
                 paso4: "<strong>[PASO 4] Sustituir algebraicamente:</strong><br>Introducimos los nuevos términos u y -du dentro de nuestra integral:<br>∫ (1 - u²)(-du) = ∫ (u² - 1) du",
-                paso5: "<strong>[PASO 5] Integrar término a término:</strong><br>Aplicamos la regla clásica de potencias para polinomios algebraicos:<br>(u³ / 3) - u + C",
-                paso6: "<strong>[PASO 6] Regresar a la variable original (x):</strong><br>Reemplazamos de vuelta la variable u por su equivalencia cos(x):<br><br><strong>Resultado Final:</strong> [ cos³(x) / 3 ] - cos(x) + C"
+                paso5: "<strong>[PASO 5] Integrar término a término:</strong><br>Aplicamos la regla clásica de potencias integrando por separado cada elemento del polinomio algebraico obtenido:<br>∫ u² du - ∫ 1 du = (u³ / 3) - u + C",
+                paso6: "<strong>[PASO 6] Regresar a la variable original (x):</strong><br>Reemplazamos de vuelta la variable u por su equivalencia original cos(x) para finalizar el ejercicio:<br><br><strong>Resultado Final:</strong> [ cos³(x) / 3 ] - cos(x) + C"
             },
             tipo2: {
                 titulo: "Tipo 2: Potencias Pares de Seno o Coseno",
@@ -374,11 +374,11 @@
             },
             tipo4: {
                 titulo: "Tipo 4: Productos con Ángulos Distintos / Sustitución Lineal",
-                enunciado: "<strong>Problema:</strong> Calcular la integral trigonométrica: ∫ sin(5x) dx",
+                enunciado: "<strong>Problema:</strong> Calcular la integral trigonométrica: ∫ sen(5x) dx",
                 paso1: "<strong>[PASO 1] Cambio de variable del argumento:</strong><br>Elegimos el argumento del seno (el ángulo compuesto) como nuestra variable u:<br>u = 5x",
                 paso2: "<strong>[PASO 2] Calcular el diferencial du:</strong><br>Derivamos u respecto a x para hallar la equivalencia del dx original:<br>du = 5 dx &nbsp;→&nbsp; dx = du / 5",
-                paso3: "<strong>[PASO 3] Sustituir en la integral original:</strong><br>Reemplazamos los términos originales en función del parámetro u:<br>∫ sin(u) · (du / 5) = (1/5) ∫ sin(u) du",
-                paso4: "<strong>[PASO 4] Integrar de forma directa:</strong><br>Aplicamos la fórmula fundamental de integración inmediata [∫ sin(u) du = -cos(u)]:<br>(1/5) · (-cos(u)) + C = -(1/5)cos(u) + C",
+                paso3: "<strong>[PASO 3] Sustituir en la integral original:</strong><br>Reemplazamos los términos originales en función del parámetro u:<br>∫ sin(u) · (du / 5) = (1/5) ∫ sen(u) du",
+                paso4: "<strong>[PASO 4] Integrar de forma directa:</strong><br>Aplicamos la fórmula fundamental de integración inmediata [∫ sen(u) du = -cos(u)]:<br>(1/5) · (-cos(u)) + C = -(1/5)cos(u) + C",
                 paso5: "<strong>[PASO 5] Regresar a la variable x:</strong><br>Reemplazamos la variable u por el ángulo original 5x:<br><br><strong>Resultado Final:</strong> -(1/5)cos(5x) + C"
             }
         };
