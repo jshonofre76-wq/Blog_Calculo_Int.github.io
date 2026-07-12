@@ -184,6 +184,100 @@
 </head>
 
 <body>
+    <!-- BOTÓN 1: Asegúrate de que cierre con </button> justo después del texto -->
+    <button onclick="abrirModalCasos()" style="position: fixed; left: 0; top: 110px; background-color: #d35400; color: white; border: none; padding: 15px 10px; cursor: pointer; font-weight: bold; border-radius: 0 8px 8px 0; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); z-index: 1000; writing-mode: vertical-rl; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">📖 Casos y Triángulos</button>
+
+    <!-- BOTÓN 2: Asegúrate de que también cierre con </button> justo después del texto -->
+    <button onclick="abrirModalFormulas()" style="position: fixed; left: 0; top: 310px; background-color: #2980b9; color: white; border: none; padding: 15px 10px; pointer-events: auto; cursor: pointer; font-weight: bold; border-radius: 0 8px 8px 0; box-shadow: 2px 2px 8px rgba(0,0,0,0.2); z-index: 1000; writing-mode: vertical-rl; text-transform: uppercase; font-size: 11px; letter-spacing: 1px;">🧮 Identidades y Fórmulas</button>
+     
+    <!-- VENTANA MODAL 1: CASOS Y TRIÁNGULOS -->
+    <div id="modalCasos" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); align-items: center; justify-content: center;">
+        <div style="background-color: #2c3e50; color: white; padding: 25px; border-radius: 8px; max-width: 800px; width: 95%; max-height: 85vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border-left: 5px solid #d35400; position: relative; font-family: 'Courier New', Courier, monospace;">
+            
+            <span onclick="cerrarModalCasos()" style="position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 2100;">&times;</span>
+        
+            <!-- El Título H3 debe ir estrictamente AQUÍ, adentro de la tarjeta -->
+            <h3 style="color: #e67e22; margin-top: 0; border-bottom: 1px solid #4f5d73; padding-bottom: 8px; text-align: center;">📐 IDENTIFICACIÓN DE CASOS Y GEOMETRÍA</h3>
+
+
+            <!-- Tabla Original de 3 Columnas Reestablecida -->
+            <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 15px; font-size: 12px; line-height: 1.5; margin-bottom: 20px;">
+                <div style="background: #1a252f; padding: 12px; border-radius: 6px; border-top: 3px solid #3498db;">
+                    <p style="color: #3498db; font-weight: bold; margin: 0 0 8px 0; text-align: center;">Caso: √(a² + x²)</p>
+                    <strong>Sustitución:</strong><br> x = a tan(θ)<br><br>
+                    <strong>Diferencial:</strong><br> dx = a sec²(θ) dθ<br><br>
+                    <strong>Identidad Raíz:</strong><br> √(a² + x²) = a sec(θ)
+                </div>
+                <div style="background: #1a252f; padding: 12px; border-radius: 6px; border-top: 3px solid #2ecc71;">
+                    <p style="color: #2ecc71; font-weight: bold; margin: 0 0 8px 0; text-align: center;">Caso: √(x² - a²)</p>
+                    <strong>Sustitución:</strong><br> x = a sec(θ)<br><br>
+                    <strong>Diferencial:</strong><br> dx = a sec(θ)tan(θ) dθ<br><br>
+                    <strong>Identidad Raíz:</strong><br> √(x² - a²) = a tan(θ)
+                </div>
+                <div style="background: #1a252f; padding: 12px; border-radius: 6px; border-top: 3px solid #e74c3c;">
+                    <p style="color: #e74c3c; font-weight: bold; margin: 0 0 8px 0; text-align: center;">Caso: √(a² - x²)</p>
+                    <strong>Sustitución:</strong><br> x = a sin(θ)<br><br>
+                    <strong>Diferencial:</strong><br> dx = a cos(θ) dθ<br><br>
+                    <strong>Identidad Raíz:</strong><br> √(a² - x²) = a cos(θ)
+                </div>
+            </div>
+
+            <h4 style="color: #f1c40f; margin: 15px 0 5px 0;">📖 APÉNDICE: Construcción del Triángulo de Pitágoras</h4>
+            <div style="font-size: 12px; line-height: 1.6; display: flex; flex-direction: column; gap: 10px; background: #243342; padding: 15px; border-radius: 6px;">
+                <strong>• Suma √(x² + a²):</strong> La raíz representa la hipotenusa. El opuesto es la variable (x) y el adyacente es la constante (a).<br>
+                <strong>• Resta √(x² - a²):</strong> El término variable positivo (x) es la hipotenusa. La constante (a) es el adyacente. La raíz es el opuesto.<br>
+                <strong>• Resta √(a² - x²):</strong> El término constante positivo (a) es la hipotenusa. La variable (x) es el opuesto. La raíz es el adyacente.
+            </div>
+
+            <h4 style="color: #f1c40f; margin: 20px 0 5px 0;">💡 Truco del Triángulo para Despejes Rápidos</h4>
+            <p style="font-size: 12px; line-height: 1.6; text-align: justify; color: #ecf0f1; background: #1a252f; padding: 12px; border-radius: 4px;">
+                Después de elegir la sustitución se construye el triángulo rectángulo. Este permite obtener el valor de la raíz y otras razones trigonométricas directamente sin necesidad de volver a sustituir algebraicamente "x" dentro de la raíz original. Se recomienda usar relaciones de seno o coseno porque tienen la hipotenusa en el denominador, facilitando los despejes necesarios.
+            </p>
+        </div>
+    </div>
+
+    <!-- VENTANA MODAL 2: IDENTIDADES Y FÓRMULAS -->
+    <div id="modalFormulas" style="display: none; position: fixed; z-index: 2000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.75); align-items: center; justify-content: center;">
+        <div style="background-color: #2c3e50; color: white; padding: 25px; border-radius: 8px; max-width: 1020px; width: 95%; max-height: 85vh; overflow-y: auto; box-shadow: 0 4px 20px rgba(0,0,0,0.3); border-left: 5px solid #2980b9; position: relative; font-family: 'Courier New', Courier, monospace;">
+
+            <span onclick="cerrarModalFormulas()" style="position: absolute; top: 10px; right: 15px; color: #aaa; font-size: 28px; font-weight: bold; cursor: pointer; z-index: 2100;">&times;</span>
+            
+            <h3 style="color: #3498db; margin-top: 0; border-bottom: 1px solid #4f5d73; padding-bottom: 8px; text-align: center;">🧮 FORMULARIO AVANZADO DE IDENTIDADES Y CÁLCULO</h3>
+
+            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px; font-size: 12px; line-height: 1.6;">
+                <!-- Columna Izquierda: Razones e Identidades -->
+                <div>
+                    <p style="color: #f39c12; margin: 0 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Razones Trigonométricas Fundamentales]</p>
+                    • sen(θ) = opuesto / hipotenusa<br>
+                    • cos(θ) = adyacente / hipotenusa<br>
+                    • tan(θ) = opuesto / adyacente<br>
+                    • sec(θ) = hipotenusa / adyacente<br>
+                    • csc(θ) = hipotenusa / opuesto<br>
+                    • cot(θ) = adyacente / opuesto
+                
+                    <p style="color: #f39c12; margin: 15px 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Identidades Trigonométricas Clave]</p>
+                    • sen²(θ) + cos²(θ) = 1 &nbsp;&nbsp;&nbsp;&nbsp;• sec²(θ) - tan²(θ) = 1<br>
+                    • 1 - sen²(θ) = cos²(θ) &nbsp;&nbsp;&nbsp;• sec²(θ) = 1 + tan²(θ)<br>
+                    • 1 - cos²(θ) = sen²(θ) &nbsp;&nbsp;&nbsp;• tan²(θ) = sec²(θ) - 1
+                </div>
+            
+                <!-- Columna Derecha: Cálculo e Inversas -->
+                <div>
+                    <p style="color: #f39c12; margin: 0 0 5px 0; font-weight: bold; border-bottom: 1px solid #555;">[Derivadas para Obtener dx]</p>
+                    • d/dθ (sen θ) = cos θ<br>
+                    • d/dθ (cos θ) = -sen θ<br>
+                    • d/dθ (tan θ) = sec² θ<br>
+                    • d/dθ (sec θ) = sec θ tan θ
+                
+                    <p style="color: #f39c12; margin: 15px 0 5px 0; font-weight: bold; border-bottom: 1px solid #555; text-align: center;">[Integrales Directas e Inversas Formas]</p>
+                    • ∫ sec²(θ)dθ = tan(θ) + C &nbsp;&nbsp;&nbsp;• ∫ [1/√(1-x²)]dx = arcsin(x)+C<br>
+                    • ∫ csc²(θ)dθ = -cot(θ) + C &nbsp;&nbsp;• ∫ [1/(1+x²)]dx = arctan(x)+C<br>
+                    • ∫ sec(θ)tan(θ)dθ = sec(θ)+C • ∫ [1/(x√(x²-1))]dx = arcsec(x)+C
+                </div>
+            </div>
+        </div>
+    </div>
+
     <!-- Copia este bloque directo dentro del body de tu archivo tema5-sustitucion.html -->
     <main style="max-width: 1100px; width: 100%; margin: 0 auto; padding: 20px;">
         <!-- Enlaces de Navegación -->
@@ -223,122 +317,199 @@
         
             <!-- Pizarra de Ejercicio por Pasos (Columna Izquierda) -->
             <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);">
-                <h2>Caso √(a² - x²): Método del Triángulo</h2>
-                <p><strong>Problema Común:</strong> Resolver la integral: ∫ 1 / √(4 - x²) dx</p>
             
-                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(1)">Paso 1: Construir Triángulo</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(2)">Paso 2: Diferencial DX</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(3)">Paso 3: Sustituir Raíz</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(4)">Paso 4: Integrar en θ</button>
-                    <button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(5)">Paso 5: Regresar a X</button>
+                <!-- SELECTOR DE LOS 3 CASOS REALES -->
+                <div style="margin-bottom: 20px; background: #f8f9fa; padding: 12px; border-radius: 6px; border-left: 4px solid #e67e22; text-align: center;">
+                    <p style="margin: 0 0 10px 0; font-weight: bold; font-size: 14px; color: #2c3e50;">Selecciona el Caso de Sustitución Trigonométrica:</p>
+                    <button class="btn-paso" style="background-color: #3498db; padding: 8px 14px;" onclick="cambiarCasoPita('caso1')">Caso 1: Suma (tan)</button>
+                    <button class="btn-paso" style="background-color: #2ecc71; padding: 8px 14px;" onclick="cambiarCasoPita('caso2')">Caso 2: Resta Var. (sec)</button>
+                    <button class="btn-paso" style="background-color: #e74c3c; padding: 8px 14px;" onclick="cambiarCasoPita('caso3')">Caso 3: Resta Const. (sin)</button>
                 </div>
 
-                <!-- Recuadro oscuro de la pizarra con su mensaje inicial restaurado -->
-                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 220px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #e67e22; line-height: 1.8;">
-                    <div id="pita-indicador">Haz clic en los pasos superiores para ver el uso de Pitágoras en la integral.</div>
-                
-                    <div id="pita-paso1" style="display: none; margin-bottom: 20px;">
-                        <strong>[PASO 1] Construir el triángulo de Pitágoras:</strong><br>
-                        Para √(4 - x²), la hipotenusa vale √4 = 2, el cateto opuesto vale √x² = x, y por Pitágoras el cateto adyacente es √(4 - x²).<br>
-                    
-                        <!-- CONTENEDOR CON MARGEN AMPLIO PARA EVITAR SUPERPOSICIONES -->
-                        <div style="background: #1a252f; padding: 25px; border-radius: 8px; max-width: 440px; margin: 20px auto; text-align: left; box-shadow: inset 0 2px 4px rgba(0,0,0,0.2);">
-                        
-                            <!-- CAJA DEL TRIÁNGULO CON ALTURA Y MÁRGENES CONTROLADOS -->
-                            <div style="position: relative; width: 140px; height: 95px; margin: 20px auto 65px auto;">
-                            
-                                <!-- El triángulo azul de fondo -->
-                                <div style="width: 0; height: 0; border-style: solid; border-width: 0 0 95px 140px; border-color: transparent transparent #3498db transparent; position: absolute; top: 0; left: 0;"></div>
-                            
-                                <!-- ARCO CORREGIDO: Ajustado y rotado para encajar dentro del triángulo azul -->
-                                <div style="position: absolute; bottom: 0; left: 0; width: 45px; height: 45px; border: 2px solid #ffffff; border-radius: 0 100% 0 0; border-bottom: none; border-left: none; box-sizing: border-box; pointer-events: none; transform: rotate(-10deg); transform-origin: bottom left;"></div>
-                            
-                                <!-- Ángulo Theta posicionado milimétricamente en el vértice -->
-                                <span style="position: absolute; bottom: 6px; left: 16px; color: #fff; font-size: 13px; font-weight: bold; z-index: 10;">θ</span>
+                <h2 id="titulo-pita">Caso 1: Suma de Cuadrados (√(x² + a²))</h2>
+                <p id="enunciado-pita">Cargando problema...</p>
+            
+                <!-- Contenedor dinámico de botones de pasos -->
+                <div class="controles-pasos" style="display: flex; gap: 8px; margin: 15px 0; flex-wrap: wrap;">
+                    <!-- El JavaScript inyectará los pasos exactos (1 al 4) aquí -->
+                </div>
 
-                                <!-- Hipotenusa (Ubicada perfectamente arriba a la izquierda de la diagonal) -->
-                                <span style="position: absolute; top: -35px; left: -10px; color: #f1c40f; font-weight: bold; font-size: 13px; text-align: center; line-height: 1.3; white-space: nowrap;">
-                                    Hipotenusa<br><strong>[ 2 ]</strong>
-                                </span>
-                            
-                                <!-- Cateto Opuesto (Ubicado a la derecha de la línea vertical) -->
-                                <span style="position: absolute; top: 20px; left: 155px; color: #e74c3c; font-weight: bold; font-size: 13px; text-align: left; line-height: 1.3; white-space: nowrap;">
-                                    Cat. Opos<br><strong>[ x ]</strong>
-                                </span>
-                            
-                                <!-- Cateto Adyacente (Ubicado abajo con espacio de sobra) -->
-                                <span style="position: absolute; top: 108px; left: -10px; color: #2ecc71; font-weight: bold; font-size: 13px; text-align: center; width: 160px; line-height: 1.3;">
-                                    Cat. Ady<br><strong>[ √(4 - x²) ]</strong>
-                                </span>
-                            </div>
+                <!-- Recuadro oscuro de la pizarra -->
+                <div class="pizarra-ejercicio" style="background-color: #2c3e50; color: #ecf0f1; padding: 20px; border-radius: 6px; min-height: 250px; font-family: 'Courier New', Courier, monospace; border-left: 5px solid #e67e22; line-height: 1.8;">
+                   <div id="pita-indicador">Haz clic en los pasos superiores para ver el desarrollo analítico y el triángulo de Pitágoras.</div>
 
-
-
-                            <!-- Bloque de Texto Inferior (Totalmente separado del gráfico) -->
-                            <div style="border-top: 1px solid #34495e; padding-top: 12px; font-size: 13px; color: #bdc3c7; line-height: 1.6; margin-top: 20px;">
-                                <strong style="color: #3498db;">📐 Relación Trigonométrica del Caso:</strong><br>
-                                sin(θ) = Cateto Opuesto / Hipotenusa<br>
-                                sin(θ) = x / 2 &nbsp;→&nbsp; <strong style="color: #fff; font-size: 14px;">x = 2 sin(θ)</strong>
-                            </div>
-
-                        </div>
-                    </div>
-
-                    <div id="pita-paso2" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 2] Calcular el diferencial dx:</strong><br>
-                        Derivamos la expresión de x encontrada en el paso anterior respecto a θ:<br>
-                        <strong>dx = 2 cos(θ) dθ</strong>
-                    </div>
-
-                    <div id="pita-paso3" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 3] Sustituir el radical e inyectar en la integral:</strong><br>
-                        Por relación trigonométrica del coseno en nuestro triángulo: cos(θ) = √(4 - x²) / 2, lo que significa que <strong>√(4 - x²) = 2 cos(θ)</strong>.<br>
-                        Sustituimos todo en la integral original:<br>
-                        ∫ [ 1 / (2 cos(θ)) ] · 2 cos(θ) dθ
-                    </div>
-
-                    <div id="pita-paso4" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 4] Simplificar la expresión e integrar de forma inmediata:</strong><br>
-                        Los términos algebraicos repetidos (2 cos(θ)) arriba y abajo se cancelan por completo:<br>
-                        ∫ 1 dθ = <strong>θ + C</strong>
-                    </div>
-
-                    <div id="pita-paso5" style="display: none; margin-bottom: 15px;">
-                        <strong>[PASO 5] Despejar θ para regresar a la variable original x:</strong><br>
-                        Del paso 1 sabemos que sin(θ) = x / 2. Si aplicamos la función inversa arcoseno (arcsin) despejamos el ángulo:<br>
-                        θ = arcsin(x / 2)<br><br>
-                        <strong>Resultado Final:</strong> arcsin(x / 2) + C
-                    </div>
-                </div> <!-- Cierra pizarra-ejercicio -->
-            </div> <!-- Cierra bloque de columna izquierda -->
+                    <div id="pita-paso1" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso2" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso3" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso4" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso5" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso6" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso7" style="display: none; margin-bottom: 15px;"></div>
+                    <div id="pita-paso8" style="display: none; margin-bottom: 15px;"></div>
+                </div>
+            </div>
 
             <!-- Panel de Preguntas Sticky (Columna Derecha) -->
             <div class="bloque" style="background: white; padding: 25px; border-radius: 8px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); position: sticky; top: 20px; align-self: start;">
                 <h2>Preguntas de Aplicación</h2>
                 <p style="font-size: 13px; color: #666;">Selecciona una pregunta para ver su respuesta:</p>
-                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarPitaRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
-                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarPitaRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
-                <button class="btn-pregunta" style="width: 100%; text-align: left; background: #ecf0f1; border: 1px solid #bdc3c7; padding: 12px; margin-bottom: 10px; border-radius: 5px; cursor: pointer; font-weight: bold; color: #2c3e50;" onclick="mostrarPitaRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
+                <button class="btn-pregunta" onclick="mostrarPitaRespuesta(1)">1. ¿En qué tipos de proyecto se aplica este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarPitaRespuesta(2)">2. ¿En la vida real, cómo podríamos aplicar este tema?</button>
+                <button class="btn-pregunta" onclick="mostrarPitaRespuesta(3)">3. ¿Qué herramientas tecnológicas facilitan su cálculo?</button>
 
                 <div style="background: #edf7fd; border-left: 4px solid #e67e22; padding: 15px; border-radius: 4px; margin-top: 15px;">
                     <div id="pita-texto-respuesta" style="font-size: 18px; line-height: 1.5; color: #2c3e50;">
                         Selecciona una de las preguntas de arriba para desplegar la información aquí.
                     </div>
                 </div>
-            </div> <!-- Cierra bloque de columna derecha -->
+            </div>
 
-        </div> <!-- Cierra fila-inferior -->
+        </div>
     </main>
 
     <!-- --- CONTROL JAVASCRIPT SIN ERRORES DE RUTAS --- -->
     <script>
-        function mostrarPitaPaso(numeroPaso) {
-            // Enciende las cajas ocultas de forma acumulativa
-            document.getElementById('pita-indicador').style.display = 'none';
-            document.getElementById('pita-paso' + numeroPaso).style.display = 'block';
+        
+        function abrirModalCasos() {
+            document.getElementById('modalCasos').style.display = 'flex';
+        }
+        
+        function cerrarModalCasos() {
+            document.getElementById('modalCasos').style.display = 'none';
+        }
+        
+        function abrirModalFormulas() {
+            document.getElementById('modalFormulas').style.display = 'flex';
+        }
+        
+        function cerrarModalFormulas() {
+            document.getElementById('modalFormulas').style.display = 'none';
         }
 
+
+        // Base de datos actualizada con los 8 pasos oficiales de tu metodología
+        let casoActual = 'caso1';
+    
+        // Cambiamos el límite de pasos a 8 para todos los casos de forma inteligente
+        let pasoMaximoPorTipo = { caso1: 8, caso2: 8, caso3: 8 };
+
+        const baseEjerciciosPita = {
+            caso1: {
+                titulo: "Caso 1: Suma de Cuadrados (√(x² + a²))",
+                enunciado: "<strong>Problema:</strong> Calcular la integral indefinida: ∫ [ x³ / √(x² + 9) ] dx",
+                paso1: "<strong>[PASO 1] Identificar el tipo de raíz:</strong><br>La raíz es √(x² + 9), que tiene la forma de una suma: √(x² + a²).<br>Como 9 = 3², entonces <strong>a = 3</strong>.<br>Esto corresponde al caso de sustitución por tangente: <strong>x = 3tan(θ)</strong>",
+                paso2: `<strong>[PASO 2] Construcción del triángulo:</strong><br>De la sustitución inicial sabemos que tan(θ) = x / 3. Recordando que tan(θ) = cateto opuesto / cateto adyacente, armamos el triángulo rectángulo inmediatamente:<br>
+                         <!-- NUEVA TARJETA FLOTANTE CON EFECTO NEÓN -->
+                        <div style="background: rgba(30, 41, 59, 0.7); padding: 25px; border-radius: 12px; max-width: 440px; margin: 25px auto; text-align: left; border: 1px solid rgba(52, 152, 219, 0.3); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2), inset 0 0 15px rgba(52, 152, 219, 0.2); backdrop-filter: blur(4px);">
+                            <div style="position: relative; width: 140px; height: 95px; margin: 20px auto 65px auto;">
+                                <div style="width: 0; height: 0; border-style: solid; border-width: 0 0 95px 140px; border-color: transparent transparent #3498db transparent; position: absolute; top: 0; left: 0;"></div>
+                                <div style="position: absolute; bottom: 0; left: 25px; width: 18px; height: 18px; border-right: 2px solid #ffffff; border-top: 2px solid #ffffff; border-radius: 0 100% 0 0; box-sizing: border-box; transform: rotate(-0.1deg); transform-origin: bottom left;"></div>
+                                <span style="position: absolute; bottom: -6px; left: 20px; color: #fff; font-size: 13px; font-weight: bold; z-index: 10;">θ</span>
+                                <span style="position: absolute; top: -7px; left: -10px; color: #f1c40f; font-weight: bold; font-size: 13px; text-align: center; white-space: nowrap;">Hipotenusa<br><strong>[ √(x² + 9) ]</strong></span>
+                                <span style="position: absolute; top: 20px; left: 155px; color: #e74c3c; font-weight: bold; font-size: 13px; white-space: nowrap;">Cat. Opos<br><strong>[ x ]</strong></span>
+                                <span style="position: absolute; top: 108px; left: -10px; color: #2ecc71; font-weight: bold; font-size: 13px; text-align: center; width: 160px;">Cat. Ady<br><strong>[ 3 ]</strong></span>
+                            </div>
+                            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; font-size: 13px; color: #bdc3c7;">
+                                tan(θ) = x / 3 &nbsp;→&nbsp; <strong style="color: #fff;">x = 3 tan(θ)</strong>
+                            </div>
+                        </div>`,
+                paso3: "<strong>[PASO 3] Despejar x:</strong><br>De nuestra relación del triángulo tan(θ) = x / 3, pasamos el número 3 a multiplicar al otro miembro para liberar la variable:<br><strong>x = 3tan(θ)</strong>",
+                paso4: "<strong>[PASO 4] Obtener el diferencial:</strong><br>Derivamos la expresión de x con respecto a θ para encontrar la equivalencia de dx:<br><strong>dx = 3sec²(θ) dθ</strong>",
+                paso5: "<strong>[PASO 5] Obtener la raíz usando el truco del triángulo:</strong><br>En lugar de sustituir x dentro de la raíz, usamos el triángulo construido.<br>Como cos(θ) = cateto adyacente / hipotenusa = 3 / √(x² + 9).<br>Despejando la raíz directamente de esa fracción obtenemos:<br><strong>√(x² + 9) = 3sec(θ)</strong>",
+                paso6: "<strong>[PASO 6] Sustituir en la integral:</strong><br>Sustituimos x³, dx y la raíz en la integral original del enunciado:<br>∫ [ (3tan(θ))³ · 3sec²(θ) dθ ] / [3sec(θ)]<br>Simplificamos los coeficientes y los términos secante:<br>27 ∫ tan³(θ) sec(θ) dθ",
+                paso7: "<strong>[PASO 7] Resolver la integral trigonométrica:</strong><br>Separamos un factor tan(θ)sec(θ) y aplicamos la identidad tan²(θ) = sec²(θ) - 1:<br>27 ∫ (sec²(θ) - 1) sec(θ)tan(θ) dθ<br>Por sustitución simple u = sec(θ), du = sec(θ)tan(θ)dθ:<br>27 ∫ (u² - 1) du = 27(u³/3 - u) = 9u³ - 27u + C → <strong>9sec³(θ) - 27sec(θ) + C</strong>",
+                paso8: "<strong>[PASO 8] Regresar a la variable original x:</strong><br>Al regresar a x, debemos reemplazar cualquier función trigonométrica que aparezca. Mirando el triángulo construido al inicio, vemos que sec(θ) = hipotenusa / cateto adyacente = √(x²+9)/3. Sustituimos directamente sin necesidad de despejar la raíz dentro del álgebra:<br>9[√(x²+9)/3]³ - 27[√(x²+9)/3] + C = 9[ (x²+9)^(3/2) / 27 ] - 9√(x²+9) + C<br><br><strong>Resultado Final:</strong> [ (x² + 9)^(3/2) / 3 ] - 9√(x² + 9) + C"
+
+            },
+            caso2: {
+                titulo: "Caso 2: Diferencia con Variable Primero (√(x² - a²))",
+                enunciado: "<strong>Problema:</strong> Calcular la integral indefinida: ∫ [ √(x² - 9) / x ] dx",
+                paso1: "<strong>[PASO 1] Identificar el tipo de raíz:</strong><br>La raíz es √(x² - 9), que tiene la forma de una resta con la variable primero: √(x² - a²).<br>Como 9 = 3², entonces <strong>a = 3</strong>.<br>Esto corresponde al caso de sustitución por secante: <strong>x = 3sec(θ)</strong>",
+                paso2: `<strong>[PASO 2] Construcción del triángulo:</strong><br>De la sustitución inicial sabemos que sec(θ) = x / 3. Recordando que sec(θ) = hipotenusa / cateto adyacente, armamos el triángulo rectángulo inmediatamente:<br>
+                        <!-- NUEVA TARJETA FLOTANTE CON EFECTO NEÓN -->
+                        <div style="background: rgba(30, 41, 59, 0.7); padding: 25px; border-radius: 12px; max-width: 440px; margin: 25px auto; text-align: left; border: 1px solid rgba(52, 152, 219, 0.3); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2), inset 0 0 15px rgba(52, 152, 219, 0.2); backdrop-filter: blur(4px);">
+                            <div style="position: relative; width: 140px; height: 95px; margin: 20px auto 65px auto;">
+                                <div style="width: 0; height: 0; border-style: solid; border-width: 0 0 95px 140px; border-color: transparent transparent #3498db transparent; position: absolute; top: 0; left: 0;"></div>
+                                <div style="position: absolute; bottom: 0; left: 25px; width: 18px; height: 18px; border-right: 2px solid #ffffff; border-top: 2px solid #ffffff; border-radius: 0 100% 0 0; box-sizing: border-box; transform: rotate(-0.1deg); transform-origin: bottom left;"></div>
+                                <span style="position: absolute; bottom: -6px; left: 20px; color: #fff; font-size: 13px; font-weight: bold; z-index: 10;">θ</span>
+                                <span style="position: absolute; top: 5px; left: -10px; color: #f1c40f; font-weight: bold; font-size: 13px; text-align: center; white-space: nowrap;">Hipotenusa<br><strong>[ x ]</strong></span>
+                                <span style="position: absolute; top: 20px; left: 155px; color: #e74c3c; font-weight: bold; font-size: 13px; white-space: nowrap;">Cat. Opos<br><strong>[ √(x² - 9) ]</strong></span>
+                                <span style="position: absolute; top: 108px; left: -10px; color: #2ecc71; font-weight: bold; font-size: 13px; text-align: center; width: 160px;">Cat. Ady<br><strong>[ 3 ]</strong></span>
+                            </div>
+                            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; font-size: 13px; color: #bdc3c7;">
+                                sec(θ) = x / 3 &nbsp;→&nbsp; <strong style="color: #fff;">x = 3 sec(θ)</strong>
+                            </div>
+                        </div>`,
+                paso3: "<strong>[PASO 3] Despejar x:</strong><br>De nuestra relación sec(θ) = x / 3, pasamos el denominador 3 a multiplicar al término izquierdo para aislar la variable:<br><strong>x = 3sec(θ)</strong>",
+                paso4: "<strong>[PASO 4] Obtener el diferencial:</strong><br>Derivamos la expresión de x con respecto al ángulo θ para encontrar la equivalencia de dx:<br><strong>dx = 3sec(θ)tan(θ) dθ</strong>",
+                paso5: "<strong>[PASO 5] Obtener la raíz usando el truco del triángulo:</strong><br>En lugar de sustituir x dentro de la raíz, miramos el triángulo.<br>Como cateto opuesto = √(x² - 9) e hipotenusa = x, usamos seno:<br>sin(θ) = √(x² - 9) / x &nbsp;→&nbsp; Despejando obtenemos de forma directa:<br><strong>√(x² - 9) = x sin(θ)</strong>",
+                paso6: "<strong>[PASO 6] Sustituir en la integral:</strong><br>Reemplazamos √(x² - 9) y dx en la integral original:<br>∫ [ (x sin(θ)) / x ] · [ 3sec(θ)tan(θ) ] dθ<br>Cancelamos la variable x de la fracción y convertimos sec y tan a sen/cos:<br>3 ∫ sin(θ) · [1/cos(θ)] · [sin(θ)/cos(θ)] dθ = 3 ∫ (sin²(θ)/cos²(θ)) dθ = <strong>3 ∫ tan²(θ) dθ</strong>",
+                paso7: "<strong>[PASO 7] Resolver la integral trigonométrica:</strong><br>Usamos la identidad trigonométrica tan²(θ) = sec²(θ) - 1 de nuestro formulario:<br>3 ∫ (sec²(θ) - 1) dθ<br>Integramos término a término de forma directa:<br><strong>3(tan(θ) - θ) + C</strong>",
+                paso8: "<strong>[PASO 8] Regresar a la variable original x:</strong><br>Al regresar a x, no solo se debe reemplazar θ, sino también cualquier función trigonométrica que todavía aparezca, en este caso tan(θ). Para eso usamos nuevamente el triángulo construido al inicio, donde tan(θ) = opuesto/adyacente = √(x²-9)/3. Por otro lado, para separar el ángulo θ solo, aplicamos la función inversa a la sustitución inicial: θ = sec⁻¹(x/3). Sustituimos ambos:<br>3 [ (√(x²-9)/3) - sec⁻¹(x/3) ] + C<br><br><strong>Resultado Final:</strong> √(x² - 9) - 3sec⁻¹(x/3) + C"
+            },
+            caso3: {
+                titulo: "Caso 3: Diferencia con Constante Primero (√(a² - x²))",
+                enunciado: "<strong>Problema:</strong> Calcular la integral indefinida: ∫ [ 1 / √(16 - x²) ] dx",
+                paso1: "<strong>[PASO 1] Identificar el tipo de raíz:</strong><br>La raíz es √(16 - x²), que tiene la forma de una resta con la constante primero: √(a² - x²).<br>Como 16 = 4², entonces <strong>a = 4</strong>.<br>Esto corresponde al caso de sustitución por seno: <strong>x = 4sin(θ)</strong>",
+                paso2: `<strong>[PASO 2] Construcción del triángulo:</strong><br>De la sustitución inicial sabemos que sin(θ) = x / 4. Recordando que sin(θ) = cateto opuesto / hipotenusa, armamos el triángulo rectángulo inmediatamente:<br>
+                        <!-- NUEVA TARJETA FLOTANTE CON EFECTO NEÓN -->
+                        <div style="background: rgba(30, 41, 59, 0.7); padding: 25px; border-radius: 12px; max-width: 440px; margin: 25px auto; text-align: left; border: 1px solid rgba(52, 152, 219, 0.3); box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.2), inset 0 0 15px rgba(52, 152, 219, 0.2); backdrop-filter: blur(4px);">
+                            <div style="position: relative; width: 140px; height: 95px; margin: 20px auto 65px auto;">
+                                <div style="width: 0; height: 0; border-style: solid; border-width: 0 0 95px 140px; border-color: transparent transparent #3498db transparent; position: absolute; top: 0; left: 0;"></div>
+                                <div style="position: absolute; bottom: 0; left: 25px; width: 18px; height: 18px; border-right: 2px solid #ffffff; border-top: 2px solid #ffffff; border-radius: 0 100% 0 0; box-sizing: border-box; transform: rotate(-0.1deg); transform-origin: bottom left;"></div>
+                                <span style="position: absolute; bottom: -6px; left: 20px; color: #fff; font-size: 13px; font-weight: bold; z-index: 10;">θ</span>
+                                <span style="position: absolute; top: 5px; left: -10px; color: #f1c40f; font-weight: bold; font-size: 13px; text-align: center; white-space: nowrap;">Hipotenusa<br><strong>[ 4 ]</strong></span>
+                                <span style="position: absolute; top: 20px; left: 155px; color: #e74c3c; font-weight: bold; font-size: 13px; white-space: nowrap;">Cat. Opos<br><strong>[ x ]</strong></span>
+                                <span style="position: absolute; top: 108px; left: -10px; color: #2ecc71; font-weight: bold; font-size: 13px; text-align: center; width: 160px;">Cat. Ady<br><strong>[ √(16 - x²) ]</strong></span>
+                            </div>
+                            <div style="border-top: 1px solid rgba(255,255,255,0.1); padding-top: 12px; font-size: 13px; color: #bdc3c7;">
+                                sin(θ) = x / 4 &nbsp;→&nbsp; <strong style="color: #fff;">x = 4 sin(θ)</strong>
+                            </div>
+                        </div>`,
+                paso3: "<strong>[PASO 3] Despejar x:</strong><br>De nuestra relación del triángulo sin(θ) = x / 4, pasamos el número 4 a multiplicar al término izquierdo para liberar la variable:<br><strong>x = 4sin(θ)</strong>",
+                paso4: "<strong>[PASO 4] Obtener el diferencial:</strong><br>Derivamos la expresión de x con respecto a θ para encontrar la equivalencia de dx:<br><strong>dx = 4cos(θ) dθ</strong>",
+                paso5: "<strong>[PASO 5] Obtener la raíz usando el truco del triángulo:</strong><br>En lugar de sustituir x dentro de la raíz, miramos el triángulo.<br>Como cateto adyacente = √(16 - x²) e hipotenusa = 4, usamos coseno:<br>cos(θ) = √(16 - x²) / 4 &nbsp;→&nbsp; Despejando la raíz de forma directa obtenemos:<br><strong>√(16 - x²) = 4cos(θ)</strong>",
+                paso6: "<strong>[PASO 6] Sustituir en la integral:</strong><br>Reemplazamos dx y la raíz directamente en la estructura original:<br>∫ [ 4cos(θ) dθ ] / [ 4cos(θ) ]<br>Cancelamos los términos idénticos del numerador y del denominador:<br><strong>∫ 1 dθ</strong>",
+                paso7: "<strong>[PASO 7] Resolver la integral trigonométrica:</strong><br>La integral de la unidad con respecto al diferencial dθ es directa:<br><strong>θ + C</strong>",
+                paso8: "<strong>[PASO 8] Regresar a la variable original x:</strong><br>Como el resultado de la integral nos dio el ángulo θ completamente solo, no necesitamos leer fracciones en el triángulo. El truco consiste en separar θ aplicando la función trigonométrica inversa (arcoseno) directamente sobre nuestra sustitución inicial x = 4sin(θ):<br>sin(θ) = x / 4 &nbsp;→&nbsp; θ = arcsin(x / 4)<br><br><strong>Resultado Final:</strong> arcsin(x / 4) + C"
+            }
+        }
+
+        // Cambia el caso completo al presionar las pestañas superiores
+        function cambiarCasoPita(idCaso) {
+            casoActual = idCaso;
+            document.getElementById('titulo-pita').innerText = baseEjerciciosPita[idCaso].titulo;
+            document.getElementById('enunciado-pita').innerHTML = baseEjerciciosPita[idCaso].enunciado;
+        
+            // Limpiar la pizarra al cambiar de tema
+            document.getElementById('pita-indicador').style.display = 'block';
+            for (let i = 1; i <= 8; i++) {
+                let el = document.getElementById('pita-paso' + i);
+                if (el) {
+                    el.style.display = 'none';
+                    el.innerHTML = '';
+                }
+            }
+        
+            // Inyectar dinámicamente los 8 botones fijos con backticks e indexación correctos
+            const contenedorBotones = document.querySelector('.controles-pasos');
+            contenedorBotones.innerHTML = '';
+            for (let i = 1; i <= pasoMaximoPorTipo[idCaso]; i++) {
+                contenedorBotones.innerHTML += `<button class="btn-paso" style="background-color: #34495e; color: white; border: none; padding: 8px 12px; border-radius: 4px; cursor: pointer; font-weight: bold;" onclick="mostrarPitaPaso(${i})">Paso ${i}</button>`;
+            }
+        }
+
+        function mostrarPitaPaso(numeroPaso) {
+            document.getElementById('pita-indicador').style.display = 'none';
+        
+            let contenedorPaso = document.getElementById('pita-paso' + numeroPaso);
+            if (contenedorPaso) {
+                contenedorPaso.innerHTML = baseEjerciciosPita[casoActual]['paso' + numeroPaso];
+                contenedorPaso.style.display = 'block';
+            }
+        }
+
+        // Respuestas analíticas del panel de preguntas de la derecha (Sticky)
         function mostrarPitaRespuesta(idPregunta) {
             var cuadroTexto = document.getElementById('pita-texto-respuesta');
             if (idPregunta === 1) {
@@ -349,7 +520,9 @@
                 cuadroTexto.innerHTML = "<strong>Herramientas tecnológicas:</strong> Entornos algebraicos computacionales como <strong>Maple</strong>, el motor de matemáticas de <strong>WolframAlpha</strong> o la librería <strong>SymPy de Python</strong> resuelven estas raíces pitagóricas pesadas al instante.";
             }
         }
-    </script>
 
+        // Cargar automáticamente el Caso 1 al abrir el archivo por primera vez
+        cambiarCasoPita('caso1');
+    </script>
 </body>
 </html>
